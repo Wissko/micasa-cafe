@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@400;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-terra: #C8603A;
+  --color-cream: #FAF6EF;
+  --color-olive: #6B7C4A;
+  --color-sand: #E8DCC8;
+  --color-espresso: #2A1F14;
+  --color-blush: #F2E0D4;
+
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-dmsans: 'DM Sans', system-ui, sans-serif;
+  --font-dancing: 'Dancing Script', cursive;
+}
+
+:root {
+  --terra: #C8603A;
+  --cream: #FAF6EF;
+  --olive: #6B7C4A;
+  --sand: #E8DCC8;
+  --espresso: #2A1F14;
+  --blush: #F2E0D4;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--espresso);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Mediterranean tile pattern utility */
+.tile-pattern {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 12px,
+      rgba(200, 96, 58, 0.04) 12px,
+      rgba(200, 96, 58, 0.04) 13px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 12px,
+      rgba(200, 96, 58, 0.04) 12px,
+      rgba(200, 96, 58, 0.04) 13px
+    );
+}
