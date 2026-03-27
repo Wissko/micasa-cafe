@@ -225,7 +225,7 @@ export default function HomePage() {
               {
                 icon: '☕',
                 title: 'Campos Coffee',
-                desc: 'Brisbane's favourite specialty coffee, brewed with care every morning.',
+                desc: 'Brisbane s favourite specialty coffee, brewed with care every morning.',
               },
               {
                 icon: '🥞',
