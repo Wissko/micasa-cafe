@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const fadeUp = (delay = 0) => ({
@@ -12,15 +13,30 @@ const fadeUp = (delay = 0) => ({
 export default function ContactPage() {
   return (
     <>
-      {/* Header */}
+      {/* Header — biscoff pancake stack, immersive photo background */}
       <section style={{
-        background: 'linear-gradient(135deg, var(--terra) 0%, #D4734E 100%)',
         padding: 'clamp(6rem, 12vw, 10rem) 2rem clamp(3rem, 6vw, 5rem)',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        minHeight: '40vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
-        <div className="tile-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.25 }} />
+        <Image
+          src="/images/IMG_5789.jpeg"
+          alt="Mi Casa Café biscoff pancake stack"
+          fill
+          unoptimized
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center top' }}
+        />
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(160deg, rgba(42,31,20,0.7) 0%, rgba(200,96,58,0.5) 100%)',
+        }} />
+        <div className="tile-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.18 }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <motion.span
             {...fadeUp(0)}
@@ -113,6 +129,7 @@ export default function ContactPage() {
                       color: 'var(--espresso)',
                       outline: 'none',
                       transition: 'border-color 0.2s ease',
+                      boxSizing: 'border-box',
                     }}
                     onFocus={e => (e.target.style.borderColor = 'var(--terra)')}
                     onBlur={e => (e.target.style.borderColor = 'transparent')}
@@ -151,6 +168,7 @@ export default function ContactPage() {
                     outline: 'none',
                     resize: 'vertical',
                     transition: 'border-color 0.2s ease',
+                    boxSizing: 'border-box',
                   }}
                   onFocus={e => (e.target.style.borderColor = 'var(--terra)')}
                   onBlur={e => (e.target.style.borderColor = 'transparent')}
@@ -264,7 +282,7 @@ export default function ContactPage() {
                 color: 'var(--terra)',
                 marginBottom: '0.5rem',
               }}>Follow the casa</p>
-              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                 {['@micasacafe_', '@micasacafesb'].map(handle => (
                   <a
                     key={handle}

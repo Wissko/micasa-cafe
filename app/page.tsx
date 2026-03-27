@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const fadeUp = {
@@ -15,11 +16,10 @@ const fadeUp = {
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
+      {/* Hero — full-bleed feast platter photo */}
       <section
         style={{
           minHeight: '100svh',
-          background: 'linear-gradient(160deg, #C8603A 0%, #D4734E 30%, #E8DCC8 70%, #FAF6EF 100%)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -30,27 +30,26 @@ export default function HomePage() {
           textAlign: 'center',
         }}
       >
+        {/* Photo background */}
+        <Image
+          src="/images/IMG_5786.jpeg"
+          alt="Mi Casa Mediterranean feast platter"
+          fill
+          unoptimized
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+        />
+        {/* Dark overlay for legibility */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(160deg, rgba(42,31,20,0.68) 0%, rgba(42,31,20,0.45) 60%, rgba(42,31,20,0.62) 100%)',
+        }} />
+
         {/* Tile pattern */}
         <div
           className="tile-pattern"
-          style={{ position: 'absolute', inset: 0, opacity: 0.3, pointerEvents: 'none' }}
+          style={{ position: 'absolute', inset: 0, opacity: 0.12, pointerEvents: 'none' }}
         />
-
-        {/* Decorative circles */}
-        <div style={{
-          position: 'absolute', top: '-10rem', right: '-10rem',
-          width: '40rem', height: '40rem',
-          borderRadius: '50%',
-          background: 'rgba(250,246,239,0.12)',
-          pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute', bottom: '-8rem', left: '-8rem',
-          width: '30rem', height: '30rem',
-          borderRadius: '50%',
-          background: 'rgba(250,246,239,0.08)',
-          pointerEvents: 'none',
-        }} />
 
         <div style={{ position: 'relative', zIndex: 1, maxWidth: '800px' }}>
           {/* Signature wordmark */}
@@ -67,7 +66,7 @@ export default function HomePage() {
               color: 'var(--cream)',
               display: 'block',
               lineHeight: 1,
-              textShadow: '0 2px 24px rgba(42,31,20,0.18)',
+              textShadow: '0 2px 24px rgba(0,0,0,0.4)',
             }}>Mi</span>
           </motion.div>
 
@@ -85,7 +84,7 @@ export default function HomePage() {
               display: 'block',
               lineHeight: 0.9,
               letterSpacing: '-0.02em',
-              textShadow: '0 4px 32px rgba(42,31,20,0.2)',
+              textShadow: '0 4px 32px rgba(0,0,0,0.45)',
             }}>Casa</span>
           </motion.div>
 
@@ -196,6 +195,22 @@ export default function HomePage() {
         </motion.p>
       </section>
 
+      {/* Full-width photo strip — brunch spread */}
+      <section style={{
+        position: 'relative',
+        width: '100%',
+        height: 'clamp(280px, 45vw, 540px)',
+        overflow: 'hidden',
+      }}>
+        <Image
+          src="/images/IMG_5795.jpeg"
+          alt="Mi Casa brunch spread — shakshuka, avocado toast, pancakes and more"
+          fill
+          unoptimized
+          style={{ objectFit: 'cover', objectPosition: 'center top' }}
+        />
+      </section>
+
       {/* Features grid */}
       <section style={{ backgroundColor: 'var(--cream)', padding: '5rem 2rem' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
@@ -225,7 +240,7 @@ export default function HomePage() {
               {
                 icon: '☕',
                 title: 'Campos Coffee',
-                desc: 'Brisbane s favourite specialty coffee, brewed with care every morning.',
+                desc: 'Brisbane\'s favourite specialty coffee, brewed with care every morning.',
               },
               {
                 icon: '🥞',
@@ -240,7 +255,7 @@ export default function HomePage() {
               {
                 icon: '🍕',
                 title: 'Dessert Pizzas',
-                desc: 'Nutella Madness, White Heaven — sweet finishes you won't forget.',
+                desc: 'Nutella Madness, White Heaven — sweet finishes you won\'t forget.',
               },
             ].map((item, i) => (
               <motion.div

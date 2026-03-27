@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const fadeUp = (delay = 0) => ({
@@ -44,6 +45,9 @@ const menuSections: MenuSection[] = [
     items: [
       { name: 'Sujak Sensation', desc: 'House-spiced sujak sausage, poached eggs, grilled sourdough & house relish' },
       { name: 'Haloumi Bruschetta', desc: 'Pan-seared haloumi, heirloom tomato, basil oil & toasted ciabatta' },
+      { name: 'Pistachio French Toast', desc: 'Brioche, pistachio cream, white chocolate, strawberries & Turkish delight' },
+      { name: 'Herb-Crusted Schnitzel', desc: 'Golden schnitzel, creamy mushroom sauce, crinkle-cut fries & garden salad' },
+      { name: 'Fish Tacos', desc: 'Crispy battered fish, pickled onions, jalapeños, pico de gallo & lime' },
     ],
   },
   {
@@ -54,6 +58,7 @@ const menuSections: MenuSection[] = [
       { name: 'Dessert Pizza – Nutella Madness', desc: 'Thin crispy base, Nutella, banana, strawberry & crushed Oreo' },
       { name: 'Dessert Pizza – White Heaven', desc: 'White chocolate spread, mixed berries & toasted almond' },
       { name: 'Sundae – Strawberry Dream', desc: 'Vanilla ice cream, fresh strawberries, whipped cream & strawberry sauce' },
+      { name: 'PB Banana Waffle Bowl', desc: 'Crispy waffle shell, peanut butter ice cream, banana, Reese\'s & chocolate drizzle' },
     ],
   },
   {
@@ -89,18 +94,67 @@ const menuSections: MenuSection[] = [
   },
 ]
 
+// Photo spotlight items for visual sections
+const spotlightPhotos = [
+  {
+    src: '/images/IMG_5787.jpeg',
+    alt: 'Fresh fruit Belgian waffle with raspberries, blueberries and cream',
+    caption: 'Belgian Waffle',
+    section: 'Breakfast',
+  },
+  {
+    src: '/images/IMG_5793.jpeg',
+    alt: 'Pistachio French toast with strawberries and Turkish delight',
+    caption: 'Pistachio French Toast',
+    section: 'Brunch',
+  },
+  {
+    src: '/images/IMG_5796.jpeg',
+    alt: 'Herb-crusted schnitzel with mushroom sauce and fries',
+    caption: 'Herb-Crusted Schnitzel',
+    section: 'Brunch',
+  },
+  {
+    src: '/images/IMG_5797.jpeg',
+    alt: 'Crispy fish tacos with fresh garnishes',
+    caption: 'Fish Tacos',
+    section: 'Brunch',
+  },
+  {
+    src: '/images/IMG_5794.jpeg',
+    alt: 'Peanut butter banana waffle bowl with Reese\'s and chocolate drizzle',
+    caption: 'PB Banana Waffle Bowl',
+    section: 'Desserts',
+  },
+]
+
 export default function MenuPage() {
   return (
     <>
-      {/* Header */}
+      {/* Header — pistachio French toast background */}
       <section style={{
-        background: 'linear-gradient(135deg, var(--terra) 0%, #D4734E 100%)',
         padding: 'clamp(6rem, 12vw, 10rem) 2rem clamp(3rem, 6vw, 5rem)',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        minHeight: '40vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
-        <div className="tile-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.25 }} />
+        <Image
+          src="/images/IMG_5793.jpeg"
+          alt="Mi Casa pistachio French toast"
+          fill
+          unoptimized
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+        />
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(160deg, rgba(42,31,20,0.72) 0%, rgba(200,96,58,0.55) 100%)',
+        }} />
+        <div className="tile-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.18 }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <motion.span
             {...fadeUp(0)}
@@ -142,8 +196,56 @@ export default function MenuPage() {
         </div>
       </section>
 
+      {/* Photo spotlight grid */}
+      <section style={{ backgroundColor: 'var(--espresso)', padding: 'clamp(2rem, 4vw, 3.5rem) 0' }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+          gap: 0,
+          maxWidth: '100%',
+          overflow: 'hidden',
+        }}>
+          {spotlightPhotos.map((photo) => (
+            <motion.div
+              key={photo.src}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              style={{
+                position: 'relative',
+                aspectRatio: '1 / 1',
+                overflow: 'hidden',
+              }}
+            >
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                unoptimized
+                style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }}
+              />
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'linear-gradient(to top, rgba(42,31,20,0.72) 0%, transparent 55%)',
+              }} />
+              <span style={{
+                position: 'absolute',
+                bottom: '0.75rem',
+                left: '0.75rem',
+                fontFamily: 'var(--font-playfair)',
+                fontStyle: 'italic',
+                fontSize: '0.85rem',
+                color: 'var(--cream)',
+                zIndex: 1,
+              }}>{photo.caption}</span>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Menu sections */}
-      {menuSections.map((section, si) => (
+      {menuSections.map((section) => (
         <section
           key={section.title}
           style={{
@@ -160,7 +262,7 @@ export default function MenuPage() {
               <span style={{
                 fontFamily: 'var(--font-dancing)',
                 fontSize: '1.1rem',
-                color: section.title === 'Coffee' ? 'var(--terra)' : 'var(--terra)',
+                color: 'var(--terra)',
                 display: 'block',
                 marginBottom: '0.2rem',
               }}>{section.accent}</span>

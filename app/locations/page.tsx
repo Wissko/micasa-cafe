@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const fadeUp = (delay = 0) => ({
@@ -68,41 +69,19 @@ export default function LocationsPage() {
               boxShadow: '0 4px 40px rgba(42,31,20,0.08)',
             }}
           >
-            {/* Placeholder image */}
+            {/* Photo — strawberry waffle + MI CASA sign */}
             <div style={{
-              height: '260px',
-              background: 'linear-gradient(135deg, #C8603A 0%, #E8DCC8 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              height: '280px',
               position: 'relative',
               overflow: 'hidden',
             }}>
-              <div className="tile-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.3 }} />
-              <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
-                <span style={{
-                  fontFamily: 'var(--font-dancing)',
-                  fontSize: '2rem',
-                  color: 'var(--cream)',
-                  display: 'block',
-                }}>Mi</span>
-                <span style={{
-                  fontFamily: 'var(--font-playfair)',
-                  fontSize: '2rem',
-                  fontWeight: 700,
-                  color: 'var(--cream)',
-                  display: 'block',
-                }}>Casa</span>
-                <span style={{
-                  fontFamily: 'var(--font-dmsans)',
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(250,246,239,0.75)',
-                  marginTop: '0.3rem',
-                  display: 'block',
-                }}>Southbank</span>
-              </div>
+              <Image
+                src="/images/IMG_5790.jpeg"
+                alt="Mi Casa Southbank — strawberry waffle with café signage"
+                fill
+                unoptimized
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
+              />
             </div>
 
             <div style={{ backgroundColor: 'var(--blush)', padding: '2rem' }}>
@@ -175,41 +154,19 @@ export default function LocationsPage() {
               boxShadow: '0 4px 40px rgba(42,31,20,0.08)',
             }}
           >
-            {/* Placeholder image */}
+            {/* Photo — Kinder Bueno pancakes + MI CASA sign */}
             <div style={{
-              height: '260px',
-              background: 'linear-gradient(135deg, #6B7C4A 0%, #E8DCC8 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              height: '280px',
               position: 'relative',
               overflow: 'hidden',
             }}>
-              <div className="tile-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.3 }} />
-              <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
-                <span style={{
-                  fontFamily: 'var(--font-dancing)',
-                  fontSize: '2rem',
-                  color: 'var(--cream)',
-                  display: 'block',
-                }}>Mi</span>
-                <span style={{
-                  fontFamily: 'var(--font-playfair)',
-                  fontSize: '2rem',
-                  fontWeight: 700,
-                  color: 'var(--cream)',
-                  display: 'block',
-                }}>Casa</span>
-                <span style={{
-                  fontFamily: 'var(--font-dmsans)',
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(250,246,239,0.75)',
-                  marginTop: '0.3rem',
-                  display: 'block',
-                }}>Underwood</span>
-              </div>
+              <Image
+                src="/images/IMG_5792.jpeg"
+                alt="Mi Casa Underwood — Kinder Bueno pancake tower with café signage"
+                fill
+                unoptimized
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
+              />
             </div>
 
             <div style={{ backgroundColor: 'var(--sand)', padding: '2rem' }}>

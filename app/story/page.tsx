@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const fadeUp = (delay = 0) => ({
@@ -12,15 +13,30 @@ const fadeUp = (delay = 0) => ({
 export default function StoryPage() {
   return (
     <>
-      {/* Header */}
+      {/* Header — rose bundt cake + Mi Casa Café signage visible */}
       <section style={{
-        background: 'linear-gradient(160deg, var(--terra) 0%, #D4734E 40%, var(--sand) 100%)',
         padding: 'clamp(6rem, 12vw, 10rem) 2rem clamp(3rem, 6vw, 5rem)',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        minHeight: '45vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
-        <div className="tile-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.25 }} />
+        <Image
+          src="/images/IMG_5788.jpeg"
+          alt="Mi Casa Café rose chocolate bundt cake with cafe signage"
+          fill
+          unoptimized
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+        />
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(160deg, rgba(42,31,20,0.65) 0%, rgba(200,96,58,0.45) 50%, rgba(42,31,20,0.7) 100%)',
+        }} />
+        <div className="tile-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.18 }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <motion.span
             {...fadeUp(0)}
@@ -89,6 +105,22 @@ export default function StoryPage() {
             We were born in Brisbane with a Mediterranean heart — warm colours, generous portions, and the kind of welcome that makes you want to linger a little longer. Whether you are at Southbank overlooking the river or at Underwood on Logan Road, you are home.
           </motion.p>
         </div>
+      </section>
+
+      {/* Full-width photo divider — artisanal biscoff stack at Mi Casa Café */}
+      <section style={{
+        position: 'relative',
+        width: '100%',
+        height: 'clamp(300px, 50vw, 560px)',
+        overflow: 'hidden',
+      }}>
+        <Image
+          src="/images/IMG_5798.jpeg"
+          alt="Mi Casa Café signature biscoff pancake stack"
+          fill
+          unoptimized
+          style={{ objectFit: 'cover', objectPosition: 'center top' }}
+        />
       </section>
 
       {/* Values */}
