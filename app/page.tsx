@@ -4,387 +4,347 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 32 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] as const },
-  }),
-}
+const ease = [0.22, 1, 0.36, 1] as const
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero — feast platter photo structures the entire first impression */}
-      <section
-        style={{
-          minHeight: '100svh',
-          position: 'relative',
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '2rem',
-          textAlign: 'center',
-        }}
-      >
+      {/* ── HERO ── full bleed, text bottom-left editorial */}
+      <section style={{ position: 'relative', minHeight: '100svh', overflow: 'hidden' }}>
         <Image
           src="/images/IMG_5786.jpeg"
-          alt="Mi Casa Café feast platter — generous food for sharing"
+          alt="Mi Casa Café — feast platter"
           fill
-          unoptimized
           priority
+          unoptimized
           style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
         />
-        {/* Warm overlay that preserves the platter's amber palette */}
-        <div style={{
+
+        {/* gradient: transparent top → espresso bottom */}
+        <div aria-hidden="true" style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(160deg, rgba(42,31,20,0.78) 0%, rgba(200,96,58,0.48) 50%, rgba(42,31,20,0.72) 100%)',
+          background: 'linear-gradient(to bottom, rgba(28,20,16,0.0) 0%, rgba(28,20,16,0.0) 30%, rgba(28,20,16,0.75) 100%)',
         }} />
-        <div
-          className="tile-pattern"
-          style={{ position: 'absolute', inset: 0, opacity: 0.18, pointerEvents: 'none' }}
-        />
 
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: '800px' }}>
-          {/* Signature wordmark */}
-          <motion.div
-            custom={0}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            style={{ marginBottom: '0.5rem' }}
-          >
-            <span style={{
-              fontFamily: 'var(--font-dancing)',
-              fontSize: 'clamp(3rem, 10vw, 7rem)',
-              color: 'var(--cream)',
-              display: 'block',
-              lineHeight: 1,
-              textShadow: '0 2px 24px rgba(42,31,20,0.3)',
-            }}>Mi</span>
-          </motion.div>
-
-          <motion.div
-            custom={1}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-          >
-            <span style={{
-              fontFamily: 'var(--font-playfair)',
-              fontSize: 'clamp(3.5rem, 12vw, 9rem)',
-              fontWeight: 800,
-              color: 'var(--cream)',
-              display: 'block',
-              lineHeight: 0.9,
-              letterSpacing: '-0.02em',
-              textShadow: '0 4px 32px rgba(42,31,20,0.35)',
-            }}>Casa</span>
-          </motion.div>
-
-          <motion.p
-            custom={2}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
+        {/* content — bottom left */}
+        <div style={{
+          position: 'relative', zIndex: 1,
+          display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
+          minHeight: '100svh',
+          padding: 'clamp(1.5rem, 5vw, 4rem)',
+          paddingTop: '6rem',
+          paddingBottom: 'clamp(2.5rem, 6vw, 5rem)',
+        }}>
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
             style={{
-              fontFamily: 'var(--font-dmsans)',
-              fontSize: 'clamp(0.85rem, 2vw, 1.05rem)',
+              fontFamily: 'var(--font-cormorant)',
               fontWeight: 300,
-              color: 'rgba(250,246,239,0.88)',
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              marginTop: '1.5rem',
-              marginBottom: '2.5rem',
+              fontStyle: 'italic',
+              fontSize: 'clamp(4rem, 14vw, 13rem)',
+              lineHeight: 0.88,
+              color: '#FAF7F2',
+              letterSpacing: '-0.02em',
             }}
           >
-            Southbank &amp; Underwood · Brisbane
+            Mi Casa
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.18, duration: 0.5, ease }}
+            style={{
+              marginTop: '1.5rem',
+              fontFamily: 'var(--font-jost)',
+              fontWeight: 400,
+              fontSize: 'clamp(0.6rem, 1.2vw, 0.8rem)',
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              color: 'rgba(250,247,242,0.72)',
+            }}
+          >
+            Southbank · Underwood · Brisbane
           </motion.p>
 
           <motion.div
-            custom={3}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.34, duration: 0.45, ease }}
+            style={{ marginTop: '2rem' }}
           >
             <Link
               href="/menu"
               style={{
                 display: 'inline-block',
-                backgroundColor: 'var(--cream)',
-                color: 'var(--terra)',
-                fontFamily: 'var(--font-playfair)',
-                fontSize: '1rem',
-                fontWeight: 600,
-                padding: '0.9rem 2.5rem',
-                borderRadius: '4px',
-                textDecoration: 'none',
-                letterSpacing: '0.03em',
-                transition: 'background-color 0.25s ease, color 0.25s ease',
+                padding: '0.85rem 2.4rem',
+                backgroundColor: '#FAF7F2',
+                color: '#1C1410',
+                fontFamily: 'var(--font-jost)',
+                fontWeight: 500,
+                fontSize: '0.6rem',
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+                transition: 'background-color 0.22s, color 0.22s',
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement
-                el.style.backgroundColor = 'var(--espresso)'
-                el.style.color = 'var(--cream)'
+                el.style.backgroundColor = '#BF5730'
+                el.style.color = '#FAF7F2'
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLElement
-                el.style.backgroundColor = 'var(--cream)'
-                el.style.color = 'var(--terra)'
+                el.style.backgroundColor = '#FAF7F2'
+                el.style.color = '#1C1410'
               }}
             >
-              See the Menu
+              See the menu
             </Link>
           </motion.div>
         </div>
+      </section>
 
-        {/* Scroll hint */}
+      {/* ── SPLIT — tagline + food photo ── */}
+      <section style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
+      }}>
+        {/* Left — sand colour block */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease }}
           style={{
-            position: 'absolute',
-            bottom: '2rem',
-            left: '50%',
-            transform: 'translateX(-50%)',
+            backgroundColor: 'var(--sand)',
             display: 'flex',
-            flexDirection: 'column',
             alignItems: 'center',
-            gap: '0.4rem',
+            justifyContent: 'center',
+            padding: 'clamp(3rem, 8vw, 6rem) clamp(2rem, 6vw, 5rem)',
+            minHeight: 'clamp(280px, 42vw, 520px)',
           }}
         >
-          <span style={{
-            fontFamily: 'var(--font-dmsans)',
-            fontSize: '0.7rem',
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            color: 'rgba(250,246,239,0.6)',
-          }}>Discover</span>
-          <div style={{
-            width: '1px',
-            height: '2.5rem',
-            background: 'linear-gradient(to bottom, rgba(250,246,239,0.6), transparent)',
-          }} />
+          <div>
+            <p style={{
+              fontFamily: 'var(--font-jost)',
+              fontWeight: 400,
+              fontSize: '0.6rem',
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              color: 'var(--terra)',
+              marginBottom: '1.25rem',
+            }}>
+              All day. Every day.
+            </p>
+            <p style={{
+              fontFamily: 'var(--font-cormorant)',
+              fontWeight: 300,
+              fontStyle: 'italic',
+              fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+              lineHeight: 1.15,
+              color: 'var(--espresso)',
+              letterSpacing: '-0.01em',
+            }}>
+              Fresh, gourmet food —<br />
+              made to satisfy.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Right — food photo */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease }}
+          style={{
+            position: 'relative',
+            minHeight: 'clamp(280px, 42vw, 520px)',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src="/images/IMG_5795.jpeg"
+            alt="Mi Casa Café food spread"
+            fill
+            unoptimized
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
         </motion.div>
       </section>
 
-      {/* Tagline strip */}
-      <section style={{ backgroundColor: 'var(--sand)', padding: '3rem 2rem', textAlign: 'center' }}>
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{
-            fontFamily: 'var(--font-playfair)',
-            fontStyle: 'italic',
-            fontSize: 'clamp(1.4rem, 4vw, 2.2rem)',
-            color: 'var(--espresso)',
-            maxWidth: '680px',
-            margin: '0 auto',
-          }}
-        >
-          &ldquo;Fresh, gourmet food — made to satisfy.&rdquo;
-        </motion.p>
+      {/* ── INFO BAR — dark, minimal ── */}
+      <section style={{
+        position: 'relative',
+        overflow: 'hidden',
+        backgroundColor: 'var(--espresso)',
+        padding: 'clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem)',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+        gap: '2.5rem',
+      }}>
+        {/* Subtle grain */}
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+          <Image
+            src="/images/IMG_5792.jpeg"
+            alt=""
+            fill
+            unoptimized
+            style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.07 }}
+          />
+        </div>
+
+        {[
+          { label: 'Coffee', value: 'Campos specialty' },
+          { label: 'Southbank', value: 'Southpoint, QLD' },
+          { label: 'Underwood', value: 'Logan Road, QLD' },
+          { label: 'Certified', value: '100% Halal' },
+        ].map(({ label, value }) => (
+          <div key={label} style={{ position: 'relative', zIndex: 1 }}>
+            <p style={{
+              fontFamily: 'var(--font-jost)',
+              fontWeight: 500,
+              fontSize: '0.55rem',
+              letterSpacing: '0.26em',
+              textTransform: 'uppercase',
+              color: '#FAF7F2',
+              opacity: 0.45,
+              marginBottom: '0.5rem',
+            }}>
+              {label}
+            </p>
+            <p style={{
+              fontFamily: 'var(--font-cormorant)',
+              fontWeight: 300,
+              fontSize: '1.1rem',
+              color: '#FAF7F2',
+              lineHeight: 1.4,
+            }}>
+              {value}
+            </p>
+          </div>
+        ))}
       </section>
 
-      {/* Our Food — full-width photo break, no text overlay */}
-      <section style={{ position: 'relative', width: '100%', height: 'clamp(320px, 55vw, 620px)', overflow: 'hidden' }}>
+      {/* ── PHOTO BREAK — full width ── */}
+      <section style={{ position: 'relative', width: '100%', height: 'clamp(300px, 50vw, 580px)', overflow: 'hidden' }}>
         <Image
-          src="/images/IMG_5795.jpeg"
-          alt="Mi Casa Café food spread — shakshuka, pancakes, avocado toast, smoothie bowl"
+          src="/images/IMG_5793.jpeg"
+          alt="Mi Casa Café atmosphere"
           fill
           unoptimized
           style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
-        {/* Subtle bottom fade into next section */}
-        <div style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          height: '80px',
-          background: 'linear-gradient(to bottom, transparent, var(--cream))',
-        }} />
       </section>
 
-      {/* Features grid */}
-      <section style={{ backgroundColor: 'var(--cream)', padding: '4rem 2rem 5rem' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-            style={{
-              fontFamily: 'var(--font-playfair)',
-              fontSize: 'clamp(2rem, 5vw, 3rem)',
-              fontWeight: 700,
-              color: 'var(--espresso)',
-              textAlign: 'center',
-              marginBottom: '3rem',
-            }}
-          >
-            All day. Every day.
-          </motion.h2>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '2rem',
-          }}>
-            {[
-              {
-                icon: '☕',
-                title: 'Campos Coffee',
-                desc: "Brisbane's favourite specialty coffee, brewed with care every morning.",
-              },
-              {
-                icon: '🥞',
-                title: 'Crave-worthy Pancakes',
-                desc: 'Buttermilk, blueberry, Nutella — stacked high and made to impress.',
-              },
-              {
-                icon: '🥗',
-                title: 'Açaï & Fit Shakes',
-                desc: 'Tropical Colada, Super Green, Berry Breaky — fresh and full of life.',
-              },
-              {
-                icon: '🍕',
-                title: 'Dessert Pizzas',
-                desc: "Nutella Madness, White Heaven — sweet finishes you won't forget.",
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-                style={{
-                  backgroundColor: 'var(--blush)',
-                  borderRadius: '8px',
-                  padding: '2rem',
-                  textAlign: 'center',
-                }}
-              >
-                <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{item.icon}</div>
-                <h3 style={{
-                  fontFamily: 'var(--font-playfair)',
-                  fontWeight: 700,
-                  fontSize: '1.2rem',
-                  color: 'var(--espresso)',
-                  marginBottom: '0.6rem',
-                }}>{item.title}</h3>
-                <p style={{
-                  fontFamily: 'var(--font-dmsans)',
-                  fontSize: '0.9rem',
-                  color: 'var(--espresso)',
-                  opacity: 0.75,
-                  lineHeight: 1.6,
-                }}>{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Halal certification — photo stands alone, no text laid over it */}
-      <section style={{ backgroundColor: 'var(--sand)', padding: '3rem 2rem' }}>
-        <div style={{ maxWidth: '480px', margin: '0 auto', textAlign: 'center' }}>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-            style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', borderRadius: '8px', overflow: 'hidden' }}
-          >
-            <Image
-              src="/images/IMG_5799.jpeg"
-              alt="100% Halal certified cafés — Queensland"
-              fill
-              unoptimized
-              style={{ objectFit: 'cover' }}
-            />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Two locations CTA */}
-      <section style={{ backgroundColor: 'var(--espresso)', padding: '5rem 2rem', textAlign: 'center' }}>
+      {/* ── CTA FINAL ── */}
+      <section style={{
+        backgroundColor: 'var(--cream)',
+        padding: 'clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        gap: '2rem',
+      }}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.55, ease }}
         >
-          <span style={{
-            fontFamily: 'var(--font-dancing)',
-            fontSize: '1.4rem',
-            color: 'var(--terra)',
-            display: 'block',
-            marginBottom: '0.5rem',
-          }}>two homes,</span>
-          <h2 style={{
-            fontFamily: 'var(--font-playfair)',
-            fontSize: 'clamp(2rem, 5vw, 3rem)',
-            fontWeight: 700,
-            color: 'var(--cream)',
-            marginBottom: '1rem',
-          }}>one familia</h2>
           <p style={{
-            fontFamily: 'var(--font-dmsans)',
-            fontSize: '1rem',
-            color: 'rgba(250,246,239,0.7)',
-            marginBottom: '2.5rem',
+            fontFamily: 'var(--font-jost)',
+            fontWeight: 400,
+            fontSize: '0.6rem',
+            letterSpacing: '0.25em',
+            textTransform: 'uppercase',
+            color: 'var(--terra)',
+            marginBottom: '1rem',
           }}>
-            Southbank (Southpoint) &amp; Underwood (Logan Road)
+            Two homes
+          </p>
+          <h2 style={{
+            fontFamily: 'var(--font-cormorant)',
+            fontWeight: 300,
+            fontStyle: 'italic',
+            fontSize: 'clamp(2.2rem, 6vw, 4.5rem)',
+            lineHeight: 1,
+            color: 'var(--espresso)',
+            letterSpacing: '-0.02em',
+            marginBottom: '0.5rem',
+          }}>
+            One familia
+          </h2>
+          <p style={{
+            fontFamily: 'var(--font-jost)',
+            fontWeight: 300,
+            fontSize: '0.85rem',
+            color: 'var(--espresso)',
+            opacity: 0.6,
+            marginBottom: '2rem',
+          }}>
+            Southbank · Underwood
           </p>
           <Link
             href="/locations"
             style={{
               display: 'inline-block',
-              border: '1.5px solid var(--terra)',
-              color: 'var(--terra)',
-              fontFamily: 'var(--font-playfair)',
-              fontSize: '1rem',
-              fontWeight: 600,
-              padding: '0.85rem 2.2rem',
-              borderRadius: '4px',
-              textDecoration: 'none',
-              transition: 'background-color 0.25s ease, color 0.25s ease',
+              padding: '0.85rem 2.4rem',
+              border: '1px solid var(--espresso)',
+              color: 'var(--espresso)',
+              fontFamily: 'var(--font-jost)',
+              fontWeight: 500,
+              fontSize: '0.6rem',
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              transition: 'background-color 0.22s, color 0.22s',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.backgroundColor = 'var(--terra)'
-              el.style.color = 'var(--cream)'
+              el.style.backgroundColor = 'var(--espresso)'
+              el.style.color = '#FAF7F2'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
               el.style.backgroundColor = 'transparent'
-              el.style.color = 'var(--terra)'
+              el.style.color = 'var(--espresso)'
             }}
           >
-            Find Us
+            Find us
           </Link>
         </motion.div>
       </section>
 
-      {/* Footer */}
+      {/* ── FOOTER ── */}
       <footer style={{
         backgroundColor: 'var(--espresso)',
-        borderTop: '1px solid rgba(250,246,239,0.08)',
-        padding: '2rem',
-        textAlign: 'center',
+        borderTop: '1px solid rgba(250,247,242,0.06)',
+        padding: '2rem clamp(1.5rem, 5vw, 4rem)',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '0.75rem',
       }}>
         <p style={{
-          fontFamily: 'var(--font-dmsans)',
-          fontSize: '0.8rem',
-          color: 'rgba(250,246,239,0.4)',
-          letterSpacing: '0.05em',
+          fontFamily: 'var(--font-cormorant)',
+          fontStyle: 'italic',
+          fontSize: '1rem',
+          color: 'rgba(250,247,242,0.5)',
         }}>
-          © {new Date().getFullYear()} Mi Casa Café · Brisbane · All day brunch
+          Mi Casa Café
+        </p>
+        <p style={{
+          fontFamily: 'var(--font-jost)',
+          fontWeight: 300,
+          fontSize: '0.65rem',
+          letterSpacing: '0.12em',
+          color: 'rgba(250,247,242,0.3)',
+        }}>
+          © {new Date().getFullYear()} · Brisbane
         </p>
       </footer>
     </>
