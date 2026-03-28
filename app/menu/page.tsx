@@ -12,10 +12,10 @@ interface MenuItem {
 }
 
 const breakfast: MenuItem[] = [
-  { name: 'Buttermilk Pancakes', desc: 'Classic stack with maple syrup & whipped butter' },
-  { name: 'Blueberry Pancakes', desc: 'Fresh blueberries folded into fluffy batter' },
-  { name: 'Strawberry Pancakes', desc: 'Seasonal strawberries with lemon cream' },
-  { name: 'Lotus Biscoff Pancakes', desc: 'Biscoff sauce, banana, crushed speculoos, white flower', note: 'Signature' },
+  { name: 'Buttermilk Pancakes', desc: 'Classic stack, maple syrup & whipped butter' },
+  { name: 'Blueberry Pancakes', desc: 'Fresh blueberries, fluffy batter' },
+  { name: 'Strawberry Pancakes', desc: 'Seasonal strawberries, lemon cream' },
+  { name: 'Lotus Biscoff Pancakes', desc: 'Biscoff sauce, banana, crushed speculoos, edible flower', note: 'Signature' },
   { name: 'Classic Waffles', desc: 'Golden Belgian waffles, choice of toppings' },
   { name: 'Berry Waffle', desc: 'Mixed berries, chantilly, coulis, edible flower', note: 'Signature' },
   { name: 'Açaï Bowl — Super Green', desc: 'Spinach, banana, mango, granola, coconut flakes' },
@@ -24,7 +24,7 @@ const breakfast: MenuItem[] = [
 ]
 
 const brunch: MenuItem[] = [
-  { name: 'Pistachio French Toast', desc: 'Brioche, pistachio cream, white chocolate, strawberries, Turkish delight', note: 'Signature' },
+  { name: 'Pistachio French Toast', desc: 'Brioche, pistachio cream, white choc, strawberries, Turkish delight', note: 'Signature' },
   { name: 'Sujak Sensation', desc: 'House-spiced sujak, poached eggs, grilled sourdough, house relish' },
   { name: 'Haloumi Bruschetta', desc: 'Pan-seared haloumi, heirloom tomato, basil oil, toasted ciabatta' },
   { name: 'Herb-Crusted Schnitzel', desc: 'Creamy mushroom sauce, crinkle fries, garden salad' },
@@ -33,7 +33,7 @@ const brunch: MenuItem[] = [
 
 const desserts: MenuItem[] = [
   { name: 'Dessert Pizza — Nutella Madness', desc: 'Crispy base, Nutella, banana, strawberry, crushed Oreo' },
-  { name: 'Dessert Pizza — White Heaven', desc: 'White chocolate, mixed berries, toasted almond' },
+  { name: 'Dessert Pizza — White Heaven', desc: 'White choc spread, mixed berries, toasted almond' },
   { name: 'PB Banana Waffle Bowl', desc: 'Peanut butter ice cream, banana, Reese\'s, chocolate drizzle', note: 'Best-seller' },
   { name: 'Sundae — Strawberry Dream', desc: 'Vanilla ice cream, fresh strawberries, whipped cream' },
 ]
@@ -50,13 +50,65 @@ const drinks: MenuItem[] = [
 
 const coffee = ['Espresso', 'Long Black', 'Flat White', 'Cappuccino', 'Latte', 'Piccolo', 'Cold Brew', 'Iced Latte']
 
+// Shared item row styles
+const itemRow: React.CSSProperties = {
+  padding: '1rem 0',
+  borderBottom: '1px solid rgba(42,31,20,0.07)',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+  gap: '1rem',
+}
+
+const itemRowDark: React.CSSProperties = {
+  ...itemRow,
+  borderBottomColor: 'rgba(250,246,239,0.07)',
+}
+
+function Badge({ text }: { text: string }) {
+  return (
+    <span style={{
+      flexShrink: 0,
+      fontFamily: 'var(--font-dmsans)', fontWeight: 400,
+      fontSize: '0.5rem', letterSpacing: '0.18em', textTransform: 'uppercase',
+      color: 'var(--terra)',
+      border: '1px solid var(--terra)',
+      padding: '0.2rem 0.5rem',
+      borderRadius: '2px',
+      whiteSpace: 'nowrap',
+      marginTop: '0.25rem',
+    }}>{text}</span>
+  )
+}
+
+function ItemName({ name, dark = false }: { name: string; dark?: boolean }) {
+  return (
+    <p style={{
+      fontFamily: 'var(--font-playfair)', fontWeight: 600,
+      fontSize: '1.05rem',
+      color: dark ? '#FAF6EF' : 'var(--espresso)',
+    }}>{name}</p>
+  )
+}
+
+function ItemDesc({ desc, dark = false }: { desc: string; dark?: boolean }) {
+  return (
+    <p style={{
+      fontFamily: 'var(--font-dmsans)', fontWeight: 300,
+      fontSize: '0.78rem',
+      color: dark ? 'rgba(250,246,239,0.4)' : 'rgba(42,31,20,0.5)',
+      lineHeight: 1.5, marginTop: '0.2rem',
+    }}>{desc}</p>
+  )
+}
+
 export default function MenuPage() {
   return (
     <>
       {/* ══════════════════════════════════════════
-          HERO — full bleed, text bottom-left
+          HERO
       ══════════════════════════════════════════ */}
-      <section style={{ position: 'relative', height: 'clamp(460px, 70svh, 780px)', overflow: 'hidden' }}>
+      <section style={{ position: 'relative', height: 'clamp(460px, 68svh, 760px)', overflow: 'hidden' }}>
         <Image
           src="/images/IMG_5795.jpeg"
           alt="Mi Casa Café brunch flat lay"
@@ -65,10 +117,11 @@ export default function MenuPage() {
         />
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to bottom, rgba(28,20,16,0) 20%, rgba(28,20,16,0.78) 100%)',
+          background: 'linear-gradient(to bottom, rgba(42,31,20,0) 25%, rgba(42,31,20,0.82) 100%)',
         }} />
         <div style={{
-          position: 'absolute', bottom: 'clamp(2.5rem, 6vw, 5rem)',
+          position: 'absolute',
+          bottom: 'clamp(2.5rem, 6vw, 5rem)',
           left: 'clamp(1.5rem, 5vw, 4.5rem)',
           zIndex: 1,
         }}>
@@ -77,259 +130,181 @@ export default function MenuPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease }}
             style={{
-              fontFamily: 'var(--font-jost)',
-              fontWeight: 400,
-              fontSize: '0.58rem',
-              letterSpacing: '0.28em',
-              textTransform: 'uppercase',
-              color: 'var(--terra)',
-              marginBottom: '0.8rem',
+              fontFamily: 'var(--font-dmsans)', fontWeight: 400,
+              fontSize: '0.6rem', letterSpacing: '0.28em', textTransform: 'uppercase',
+              color: 'var(--terra)', marginBottom: '0.75rem',
             }}
-          >
-            All day · Every day
-          </motion.p>
-          <motion.h1
+          >All day · Every day</motion.p>
+          <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6, ease }}
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontStyle: 'italic',
-              fontWeight: 300,
-              fontSize: 'clamp(3.5rem, 10vw, 9rem)',
-              lineHeight: 0.9,
-              color: '#FAF7F2',
-              letterSpacing: '-0.02em',
-            }}
           >
-            The Menu
-          </motion.h1>
+            <span style={{
+              fontFamily: 'var(--font-dancing)', fontWeight: 600,
+              fontSize: 'clamp(1.6rem, 4.5vw, 4rem)',
+              color: 'var(--terra)', display: 'block', lineHeight: 1,
+            }}>the</span>
+            <span style={{
+              fontFamily: 'var(--font-playfair)', fontWeight: 800,
+              fontSize: 'clamp(3.5rem, 10vw, 9rem)',
+              color: '#FAF6EF', display: 'block',
+              lineHeight: 0.88, letterSpacing: '-0.02em',
+            }}>Menu</span>
+          </motion.div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          BREAKFAST — split layout with photo
+          BREAKFAST — split photo / list
       ══════════════════════════════════════════ */}
-      <section style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))',
-      }}>
-        {/* Photo — Berry waffle */}
-        <div style={{ position: 'relative', minHeight: 'clamp(320px, 45vw, 600px)', overflow: 'hidden' }}>
+      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))' }}>
+        {/* Photo */}
+        <div style={{ position: 'relative', minHeight: 'clamp(300px, 44vw, 580px)', overflow: 'hidden' }}>
           <Image
             src="/images/IMG_5787.jpeg"
             alt="Berry waffle with fresh fruit and cream"
             fill unoptimized
             style={{ objectFit: 'cover', objectPosition: 'center' }}
           />
-          <div aria-hidden="true" style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(to right, rgba(28,20,16,0) 50%, rgba(28,20,16,0.18) 100%)',
-          }} />
-          {/* Caption overlay */}
+          {/* Caption glass */}
           <div style={{
             position: 'absolute', bottom: '1.75rem', left: '1.75rem',
-            backgroundColor: 'rgba(28,20,16,0.55)',
-            backdropFilter: 'blur(8px)',
-            padding: '0.6rem 1.1rem',
+            background: 'rgba(42,31,20,0.5)', backdropFilter: 'blur(10px)',
+            padding: '0.55rem 1rem', borderRadius: '2px',
           }}>
             <p style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontStyle: 'italic',
-              fontWeight: 400,
-              fontSize: '0.9rem',
-              color: '#FAF7F2',
+              fontFamily: 'var(--font-playfair)', fontStyle: 'italic', fontWeight: 400,
+              fontSize: '0.88rem', color: '#FAF6EF',
             }}>Berry waffle</p>
           </div>
         </div>
 
-        {/* Menu list */}
+        {/* List */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, ease }}
           style={{
-            backgroundColor: 'var(--offwhite)',
+            backgroundColor: 'var(--cream)',
             padding: 'clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 4.5rem)',
           }}
         >
           <p style={{
-            fontFamily: 'var(--font-jost)', fontWeight: 400,
+            fontFamily: 'var(--font-dmsans)', fontWeight: 400,
             fontSize: '0.55rem', letterSpacing: '0.28em', textTransform: 'uppercase',
-            color: 'var(--terra)', marginBottom: '0.5rem',
+            color: 'var(--terra)', marginBottom: '0.3rem',
           }}>Start the day</p>
-          <h2 style={{
-            fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontWeight: 300,
-            fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--espresso)',
-            marginBottom: '2.5rem', lineHeight: 1,
-          }}>Breakfast</h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-            {breakfast.map((item, i) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.04, duration: 0.4, ease }}
-                style={{
-                  padding: '1rem 0',
-                  borderBottom: '1px solid rgba(28,20,16,0.07)',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  gap: '1rem',
-                }}
-              >
-                <div>
-                  <p style={{
-                    fontFamily: 'var(--font-cormorant)', fontWeight: 600,
-                    fontSize: '1.05rem', color: 'var(--espresso)',
-                    marginBottom: item.desc ? '0.2rem' : 0,
-                  }}>{item.name}</p>
-                  {item.desc && (
-                    <p style={{
-                      fontFamily: 'var(--font-jost)', fontWeight: 300,
-                      fontSize: '0.78rem', color: 'rgba(28,20,16,0.5)', lineHeight: 1.5,
-                    }}>{item.desc}</p>
-                  )}
-                </div>
-                {item.note && (
-                  <span style={{
-                    flexShrink: 0,
-                    fontFamily: 'var(--font-jost)', fontWeight: 500,
-                    fontSize: '0.5rem', letterSpacing: '0.18em', textTransform: 'uppercase',
-                    color: 'var(--terra)',
-                    border: '1px solid var(--terra)',
-                    padding: '0.2rem 0.5rem',
-                    whiteSpace: 'nowrap',
-                    marginTop: '0.2rem',
-                  }}>{item.note}</span>
-                )}
-              </motion.div>
-            ))}
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem', marginBottom: '2.5rem' }}>
+            <span style={{ fontFamily: 'var(--font-dancing)', fontWeight: 600, fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', color: 'var(--terra)' }}>the</span>
+            <h2 style={{
+              fontFamily: 'var(--font-playfair)', fontWeight: 800,
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              color: 'var(--espresso)', lineHeight: 1,
+            }}>Breakfast</h2>
           </div>
+
+          {breakfast.map((item, i) => (
+            <motion.div
+              key={item.name}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.04, duration: 0.38, ease }}
+              style={itemRow}
+            >
+              <div>
+                <ItemName name={item.name} />
+                {item.desc && <ItemDesc desc={item.desc} />}
+              </div>
+              {item.note && <Badge text={item.note} />}
+            </motion.div>
+          ))}
         </motion.div>
       </section>
 
       {/* ══════════════════════════════════════════
-          BRUNCH — reversed split
+          BRUNCH — list / photo (reversed)
       ══════════════════════════════════════════ */}
-      <section style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))',
-      }}>
-        {/* Menu list first on desktop (order trick via CSS) */}
+      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))' }}>
+        {/* List */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, ease }}
           style={{
-            backgroundColor: 'var(--sand)',
+            backgroundColor: 'var(--blush)',
             padding: 'clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 4.5rem)',
             order: 0,
           }}
         >
           <p style={{
-            fontFamily: 'var(--font-jost)', fontWeight: 400,
+            fontFamily: 'var(--font-dmsans)', fontWeight: 400,
             fontSize: '0.55rem', letterSpacing: '0.28em', textTransform: 'uppercase',
-            color: 'var(--terra)', marginBottom: '0.5rem',
+            color: 'var(--terra)', marginBottom: '0.3rem',
           }}>Gourmet & generous</p>
-          <h2 style={{
-            fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontWeight: 300,
-            fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--espresso)',
-            marginBottom: '2.5rem', lineHeight: 1,
-          }}>Brunch</h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-            {brunch.map((item, i) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05, duration: 0.4, ease }}
-                style={{
-                  padding: '1rem 0',
-                  borderBottom: '1px solid rgba(28,20,16,0.08)',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  gap: '1rem',
-                }}
-              >
-                <div>
-                  <p style={{
-                    fontFamily: 'var(--font-cormorant)', fontWeight: 600,
-                    fontSize: '1.05rem', color: 'var(--espresso)',
-                    marginBottom: item.desc ? '0.2rem' : 0,
-                  }}>{item.name}</p>
-                  {item.desc && (
-                    <p style={{
-                      fontFamily: 'var(--font-jost)', fontWeight: 300,
-                      fontSize: '0.78rem', color: 'rgba(28,20,16,0.5)', lineHeight: 1.5,
-                    }}>{item.desc}</p>
-                  )}
-                </div>
-                {item.note && (
-                  <span style={{
-                    flexShrink: 0,
-                    fontFamily: 'var(--font-jost)', fontWeight: 500,
-                    fontSize: '0.5rem', letterSpacing: '0.18em', textTransform: 'uppercase',
-                    color: 'var(--terra)',
-                    border: '1px solid var(--terra)',
-                    padding: '0.2rem 0.5rem',
-                    whiteSpace: 'nowrap',
-                    marginTop: '0.2rem',
-                  }}>{item.note}</span>
-                )}
-              </motion.div>
-            ))}
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem', marginBottom: '2.5rem' }}>
+            <span style={{ fontFamily: 'var(--font-dancing)', fontWeight: 600, fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', color: 'var(--terra)' }}>the</span>
+            <h2 style={{
+              fontFamily: 'var(--font-playfair)', fontWeight: 800,
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              color: 'var(--espresso)', lineHeight: 1,
+            }}>Brunch</h2>
           </div>
+
+          {brunch.map((item, i) => (
+            <motion.div
+              key={item.name}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.38, ease }}
+              style={itemRow}
+            >
+              <div>
+                <ItemName name={item.name} />
+                {item.desc && <ItemDesc desc={item.desc} />}
+              </div>
+              {item.note && <Badge text={item.note} />}
+            </motion.div>
+          ))}
         </motion.div>
 
-        {/* Photo — pistachio french toast */}
-        <div style={{ position: 'relative', minHeight: 'clamp(320px, 45vw, 600px)', overflow: 'hidden', order: 1 }}>
+        {/* Photo */}
+        <div style={{ position: 'relative', minHeight: 'clamp(300px, 44vw, 580px)', overflow: 'hidden', order: 1 }}>
           <Image
-            src="/images/IMG_5793.jpeg"
-            alt="Pistachio French toast with strawberries"
+            src="/images/IMG_5796.jpeg"
+            alt="Herb-crusted schnitzel with sauce being poured"
             fill unoptimized
-            style={{ objectFit: 'cover', objectPosition: 'center top' }}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
           />
           <div style={{
             position: 'absolute', bottom: '1.75rem', left: '1.75rem',
-            backgroundColor: 'rgba(28,20,16,0.55)',
-            backdropFilter: 'blur(8px)',
-            padding: '0.6rem 1.1rem',
+            background: 'rgba(42,31,20,0.5)', backdropFilter: 'blur(10px)',
+            padding: '0.55rem 1rem', borderRadius: '2px',
           }}>
             <p style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontStyle: 'italic',
-              fontWeight: 400,
-              fontSize: '0.9rem',
-              color: '#FAF7F2',
-            }}>Pistachio French toast</p>
+              fontFamily: 'var(--font-playfair)', fontStyle: 'italic', fontWeight: 400,
+              fontSize: '0.88rem', color: '#FAF6EF',
+            }}>Herb-Crusted Schnitzel</p>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          PHOTO BREAK — full width feast
+          PHOTO BREAK — feast platter
       ══════════════════════════════════════════ */}
-      <section style={{ position: 'relative', height: 'clamp(280px, 40vw, 520px)', overflow: 'hidden' }}>
+      <section style={{ position: 'relative', height: 'clamp(260px, 38vw, 500px)', overflow: 'hidden' }}>
         <Image
           src="/images/IMG_5786.jpeg"
-          alt="Mi Casa Café — generous sharing feast platter"
+          alt="Generous sharing feast platter"
           fill unoptimized
           style={{ objectFit: 'cover', objectPosition: 'center 35%' }}
         />
-        <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0,
-          background: 'rgba(28,20,16,0.25)',
-        }} />
-        <motion.p
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(42,31,20,0.28)' }} />
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -338,171 +313,150 @@ export default function MenuPage() {
             position: 'absolute',
             top: '50%', left: '50%',
             transform: 'translate(-50%, -50%)',
-            fontFamily: 'var(--font-cormorant)',
-            fontStyle: 'italic',
-            fontWeight: 300,
-            fontSize: 'clamp(1.4rem, 4vw, 3.5rem)',
-            color: 'rgba(250,247,242,0.9)',
-            textAlign: 'center',
-            letterSpacing: '-0.01em',
-            whiteSpace: 'nowrap',
+            textAlign: 'center', zIndex: 1,
           }}
         >
-          Generous by nature
-        </motion.p>
+          <span style={{
+            fontFamily: 'var(--font-dancing)', fontWeight: 600,
+            fontSize: 'clamp(1.2rem, 3vw, 2.2rem)',
+            color: 'var(--terra)', display: 'block', lineHeight: 1,
+          }}>generous</span>
+          <span style={{
+            fontFamily: 'var(--font-playfair)', fontWeight: 800,
+            fontSize: 'clamp(2rem, 5.5vw, 5rem)',
+            color: '#FAF6EF', display: 'block',
+            lineHeight: 0.9, letterSpacing: '-0.02em',
+          }}>by nature</span>
+        </motion.div>
       </section>
 
       {/* ══════════════════════════════════════════
-          DESSERTS + DRINKS — two-col dark
+          DESSERTS + DRINKS — dark two-col
       ══════════════════════════════════════════ */}
       <section style={{
         backgroundColor: 'var(--espresso)',
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
-        gap: 0,
       }}>
         {/* Desserts */}
         <div style={{
           padding: 'clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 4.5rem)',
-          borderRight: '1px solid rgba(250,247,242,0.06)',
+          borderRight: '1px solid rgba(250,246,239,0.06)',
         }}>
           <p style={{
-            fontFamily: 'var(--font-jost)', fontWeight: 400,
+            fontFamily: 'var(--font-dmsans)', fontWeight: 400,
             fontSize: '0.55rem', letterSpacing: '0.28em', textTransform: 'uppercase',
-            color: 'var(--terra)', marginBottom: '0.5rem',
+            color: 'var(--terra)', marginBottom: '0.3rem',
           }}>Sweet finishes</p>
-          <h2 style={{
-            fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontWeight: 300,
-            fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#FAF7F2',
-            marginBottom: '2.5rem', lineHeight: 1,
-          }}>Desserts</h2>
-          {desserts.map((item, i) => (
-            <div key={item.name} style={{
-              padding: '0.9rem 0',
-              borderBottom: '1px solid rgba(250,247,242,0.06)',
-              display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem',
-            }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem', marginBottom: '2.5rem' }}>
+            <span style={{ fontFamily: 'var(--font-dancing)', fontWeight: 600, fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', color: 'var(--terra)' }}>the</span>
+            <h2 style={{
+              fontFamily: 'var(--font-playfair)', fontWeight: 800,
+              fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#FAF6EF', lineHeight: 1,
+            }}>Desserts</h2>
+          </div>
+
+          {desserts.map((item) => (
+            <div key={item.name} style={itemRowDark}>
               <div>
-                <p style={{
-                  fontFamily: 'var(--font-cormorant)', fontWeight: 600,
-                  fontSize: '1.05rem', color: '#FAF7F2',
-                  marginBottom: item.desc ? '0.2rem' : 0,
-                }}>{item.name}</p>
-                {item.desc && (
-                  <p style={{
-                    fontFamily: 'var(--font-jost)', fontWeight: 300,
-                    fontSize: '0.78rem', color: 'rgba(250,247,242,0.38)', lineHeight: 1.5,
-                  }}>{item.desc}</p>
-                )}
+                <ItemName name={item.name} dark />
+                {item.desc && <ItemDesc desc={item.desc} dark />}
               </div>
-              {item.note && (
-                <span style={{
-                  flexShrink: 0,
-                  fontFamily: 'var(--font-jost)', fontWeight: 500,
-                  fontSize: '0.5rem', letterSpacing: '0.18em', textTransform: 'uppercase',
-                  color: 'var(--terra)',
-                  border: '1px solid var(--terra)',
-                  padding: '0.2rem 0.5rem',
-                  whiteSpace: 'nowrap',
-                  marginTop: '0.2rem',
-                }}>{item.note}</span>
-              )}
+              {item.note && <Badge text={item.note} />}
             </div>
           ))}
 
-          {/* Dessert photo */}
+          {/* Waffle bowl photo */}
           <div style={{
             position: 'relative', width: '100%', aspectRatio: '4/3',
-            overflow: 'hidden', marginTop: '2.5rem',
+            overflow: 'hidden', marginTop: '2.5rem', borderRadius: '2px',
           }}>
             <Image
               src="/images/IMG_5794.jpeg"
               alt="PB banana waffle bowl"
               fill unoptimized
-              style={{ objectFit: 'cover', objectPosition: 'center' }}
+              style={{ objectFit: 'cover' }}
             />
+            <div style={{
+              position: 'absolute', bottom: '1rem', left: '1rem',
+              background: 'rgba(42,31,20,0.5)', backdropFilter: 'blur(8px)',
+              padding: '0.45rem 0.85rem', borderRadius: '2px',
+            }}>
+              <p style={{ fontFamily: 'var(--font-playfair)', fontStyle: 'italic', fontSize: '0.8rem', color: '#FAF6EF' }}>
+                PB Banana Waffle Bowl
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Drinks */}
         <div style={{ padding: 'clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 4.5rem)' }}>
           <p style={{
-            fontFamily: 'var(--font-jost)', fontWeight: 400,
+            fontFamily: 'var(--font-dmsans)', fontWeight: 400,
             fontSize: '0.55rem', letterSpacing: '0.28em', textTransform: 'uppercase',
-            color: 'var(--terra)', marginBottom: '0.5rem',
+            color: 'var(--terra)', marginBottom: '0.3rem',
           }}>Fresh pressed & blended</p>
-          <h2 style={{
-            fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontWeight: 300,
-            fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#FAF7F2',
-            marginBottom: '2.5rem', lineHeight: 1,
-          }}>Drinks</h2>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem', marginBottom: '2.5rem' }}>
+            <span style={{ fontFamily: 'var(--font-dancing)', fontWeight: 600, fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', color: 'var(--terra)' }}>the</span>
+            <h2 style={{
+              fontFamily: 'var(--font-playfair)', fontWeight: 800,
+              fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#FAF6EF', lineHeight: 1,
+            }}>Drinks</h2>
+          </div>
+
           {drinks.map((item) => (
-            <div key={item.name} style={{
-              padding: '0.9rem 0',
-              borderBottom: '1px solid rgba(250,247,242,0.06)',
-            }}>
-              <p style={{
-                fontFamily: 'var(--font-cormorant)', fontWeight: 600,
-                fontSize: '1.05rem', color: '#FAF7F2',
-                marginBottom: item.desc ? '0.2rem' : 0,
-              }}>{item.name}</p>
-              {item.desc && (
-                <p style={{
-                  fontFamily: 'var(--font-jost)', fontWeight: 300,
-                  fontSize: '0.78rem', color: 'rgba(250,247,242,0.38)', lineHeight: 1.5,
-                }}>{item.desc}</p>
-              )}
+            <div key={item.name} style={itemRowDark}>
+              <div>
+                <ItemName name={item.name} dark />
+                {item.desc && <ItemDesc desc={item.desc} dark />}
+              </div>
             </div>
           ))}
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          COFFEE — minimal centered
+          COFFEE — cream minimal
       ══════════════════════════════════════════ */}
       <section style={{
-        backgroundColor: 'var(--cream)',
+        backgroundColor: 'var(--sand)',
         padding: 'clamp(4rem, 8vw, 7rem) clamp(2rem, 6vw, 5rem)',
       }}>
         <div style={{ maxWidth: '760px', margin: '0 auto' }}>
           <p style={{
-            fontFamily: 'var(--font-jost)', fontWeight: 400,
+            fontFamily: 'var(--font-dmsans)', fontWeight: 400,
             fontSize: '0.55rem', letterSpacing: '0.28em', textTransform: 'uppercase',
-            color: 'var(--terra)', marginBottom: '0.5rem',
+            color: 'var(--terra)', marginBottom: '0.3rem',
           }}>Campos specialty</p>
-          <h2 style={{
-            fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontWeight: 300,
-            fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--espresso)',
-            marginBottom: '3rem', lineHeight: 1,
-          }}>Coffee</h2>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem', marginBottom: '3rem' }}>
+            <span style={{ fontFamily: 'var(--font-dancing)', fontWeight: 600, fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', color: 'var(--terra)' }}>the</span>
+            <h2 style={{
+              fontFamily: 'var(--font-playfair)', fontWeight: 800,
+              fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--espresso)', lineHeight: 1,
+            }}>Coffee</h2>
+          </div>
 
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
-            gap: '0',
           }}>
             {coffee.map((name) => (
               <div key={name} style={{
                 padding: '1.1rem 0',
-                borderBottom: '1px solid rgba(28,20,16,0.07)',
+                borderBottom: '1px solid rgba(42,31,20,0.08)',
               }}>
                 <p style={{
-                  fontFamily: 'var(--font-cormorant)',
-                  fontWeight: 600,
-                  fontSize: '1.05rem',
-                  color: 'var(--espresso)',
+                  fontFamily: 'var(--font-playfair)', fontWeight: 600,
+                  fontSize: '1rem', color: 'var(--espresso)',
                 }}>{name}</p>
               </div>
             ))}
           </div>
 
           <p style={{
-            marginTop: '3rem',
-            fontFamily: 'var(--font-jost)',
-            fontWeight: 300,
-            fontSize: '0.75rem',
-            color: 'rgba(28,20,16,0.38)',
-            letterSpacing: '0.04em',
+            marginTop: '2.5rem',
+            fontFamily: 'var(--font-dmsans)', fontWeight: 300,
+            fontSize: '0.72rem', color: 'rgba(42,31,20,0.35)', letterSpacing: '0.04em',
           }}>
             Menu may vary by location · Please advise of any allergies or dietary requirements
           </p>
@@ -513,20 +467,17 @@ export default function MenuPage() {
       <footer style={{
         backgroundColor: 'var(--espresso)',
         padding: '2rem clamp(1.5rem, 6vw, 5rem)',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '0.75rem',
+        display: 'flex', justifyContent: 'space-between',
+        alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem',
       }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.3rem' }}>
+          <span style={{ fontFamily: 'var(--font-dancing)', fontWeight: 600, fontSize: '1rem', color: 'var(--terra)' }}>Mi</span>
+          <span style={{ fontFamily: 'var(--font-playfair)', fontWeight: 700, fontSize: '1rem', color: 'rgba(250,246,239,0.45)' }}>Casa Café</span>
+        </div>
         <p style={{
-          fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontWeight: 300,
-          fontSize: '1.05rem', color: 'rgba(250,247,242,0.45)',
-        }}>Mi Casa Café</p>
-        <p style={{
-          fontFamily: 'var(--font-jost)', fontWeight: 300,
+          fontFamily: 'var(--font-dmsans)', fontWeight: 300,
           fontSize: '0.65rem', letterSpacing: '0.1em',
-          color: 'rgba(250,247,242,0.25)',
+          color: 'rgba(250,246,239,0.25)',
         }}>© {new Date().getFullYear()} · Brisbane</p>
       </footer>
     </>

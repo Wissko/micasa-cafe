@@ -1,26 +1,33 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Jost } from 'next/font/google'
+import { Playfair_Display, DM_Sans, Dancing_Script } from 'next/font/google'
 import './globals.css'
 import MiCasaMenu from '@/components/MiCasaMenu'
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  weight: ['300', '400', '600', '700'],
+  weight: ['400', '600', '700', '800'],
   style: ['normal', 'italic'],
-  variable: '--font-cormorant',
+  variable: '--font-playfair',
   display: 'swap',
 })
 
-const jost = Jost({
+const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500'],
-  variable: '--font-jost',
+  variable: '--font-dmsans',
+  display: 'swap',
+})
+
+const dancing = Dancing_Script({
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  variable: '--font-dancing',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
   title: 'Mi Casa Café — Brisbane',
-  description: 'All-day brunch café in Southbank & Underwood, Brisbane. Gourmet food, specialty coffee, 100% Halal.',
+  description: 'All-day brunch café in Southbank & Underwood, Brisbane. Fresh gourmet food, specialty coffee, 100% Halal.',
   openGraph: {
     title: 'Mi Casa Café',
     description: 'Come home. All-day brunch in Brisbane.',
@@ -30,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${dancing.variable}`}>
       <body>
         <MiCasaMenu />
         <main>{children}</main>

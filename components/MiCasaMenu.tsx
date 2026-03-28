@@ -76,15 +76,14 @@ export default function MiCasaMenu() {
           WebkitTapHighlightColor: 'transparent',
         }}
       >
-        {/* Initials */}
+        {/* Initials — Dancing Script like their actual logo feel */}
         <span style={{
-          fontFamily: 'var(--font-cormorant)',
-          fontStyle: 'italic',
-          fontWeight: 600,
-          fontSize: '14px',
+          fontFamily: 'var(--font-dancing)',
+          fontWeight: 700,
+          fontSize: '15px',
           color: 'var(--terra)',
           lineHeight: 1,
-          letterSpacing: '0.02em',
+          letterSpacing: '0.01em',
         }}>MC</span>
 
         {/* Separator */}
@@ -92,7 +91,7 @@ export default function MiCasaMenu() {
 
         {/* Label */}
         <span style={{
-          fontFamily: 'var(--font-jost)',
+          fontFamily: 'var(--font-dmsans)',
           fontWeight: 500,
           fontSize: '9px',
           letterSpacing: '0.22em',
@@ -149,7 +148,7 @@ export default function MiCasaMenu() {
               }}
             >
               <span style={{
-                fontFamily: 'var(--font-jost)',
+                fontFamily: 'var(--font-dmsans)',
                 fontWeight: 500,
                 fontSize: '0.55rem',
                 letterSpacing: '0.26em',
@@ -181,7 +180,7 @@ export default function MiCasaMenu() {
                   <Link
                     href={link.href}
                     style={{
-                      fontFamily: 'var(--font-cormorant)',
+                      fontFamily: 'var(--font-playfair)',
                       fontStyle: 'italic',
                       fontWeight: 300,
                       display: 'block',
@@ -215,7 +214,7 @@ export default function MiCasaMenu() {
               onClick={(e: React.MouseEvent) => e.stopPropagation()}
             >
               <div style={{
-                fontFamily: 'var(--font-jost)',
+                fontFamily: 'var(--font-dmsans)',
                 fontWeight: 300,
                 fontSize: '0.78rem',
                 color: 'rgba(250,247,242,0.4)',
@@ -232,7 +231,7 @@ export default function MiCasaMenu() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      fontFamily: 'var(--font-jost)',
+                      fontFamily: 'var(--font-dmsans)',
                       fontWeight: 300,
                       fontSize: '0.72rem',
                       color: 'var(--terra)',
