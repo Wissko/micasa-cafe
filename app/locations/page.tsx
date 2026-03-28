@@ -247,6 +247,18 @@ export default function LocationsPage() {
         </div>
       </section>
 
+      {/* ══════════════════════════════════════════
+          HALAL / BRAND — full-bleed Danish photo (image has its own text, no overlay)
+      ══════════════════════════════════════════ */}
+      <section style={{ position: 'relative', height: 'clamp(280px, 40vw, 520px)', overflow: 'hidden' }}>
+        <Image
+          src="/images/IMG_5799.jpeg"
+          alt="Mi Casa Café Queensland — 100% Halal certified pastries selection"
+          fill unoptimized
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+        />
+      </section>
+
       {/* CTA */}
       <section style={{ backgroundColor: 'var(--sand)', padding: '4rem 2rem', textAlign: 'center' }}>
         <motion.div
@@ -285,3 +297,5 @@ export default function LocationsPage() {
     </>
   )
 }
+
+
