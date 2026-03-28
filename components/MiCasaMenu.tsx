@@ -1,139 +1,199 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/menu', label: 'Menu' },
+  { href: '/menu', label: 'The Menu' },
   { href: '/locations', label: 'Find Us' },
   { href: '/story', label: 'Our Story' },
   { href: '/contact', label: 'Contact' },
 ]
 
+const ease = [0.22, 1, 0.36, 1] as const
+
 export default function MiCasaMenu() {
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+
+  // Close on route change
+  useEffect(() => { setOpen(false) }, [pathname])
+
+  // Close on Escape
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
+  // Lock scroll when open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+  }, [open])
 
   return (
     <>
-      {/* MC Button — terracotta square, top-left */}
-      <button
-        onClick={() => setOpen(!open)}
-        aria-label={open ? 'Close menu' : 'Open menu'}
+      {/* ── TRIGGER — pill cream with terra accent ── */}
+      <motion.button
+        onClick={() => setOpen(true)}
+        aria-label="Open navigation"
+        aria-expanded={open}
+        animate={{ opacity: open ? 0 : 1, pointerEvents: open ? 'none' : 'auto' }}
+        transition={{ duration: 0.2 }}
         style={{
           position: 'fixed',
-          top: '1.25rem',
-          left: '1.25rem',
-          zIndex: 1000,
-          width: '3rem',
-          height: '3rem',
-          backgroundColor: 'var(--terra)',
-          color: 'var(--cream)',
-          border: 'none',
-          borderRadius: '4px',
+          top: '1.1rem',
+          left: '1.1rem',
+          zIndex: 200,
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          gap: '0',
-          fontFamily: 'var(--font-playfair)',
-          fontSize: '0.65rem',
-          fontWeight: '700',
-          letterSpacing: '0.05em',
-          transition: 'background-color 0.2s ease',
+          gap: '10px',
+          background: 'rgba(244,239,230,0.92)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid rgba(28,20,16,0.12)',
+          borderRadius: '999px',
+          padding: '9px 18px',
+          boxShadow: '0 2px 16px rgba(28,20,16,0.10)',
+          touchAction: 'manipulation',
+          WebkitTapHighlightColor: 'transparent',
         }}
       >
-        {open ? (
-          <span style={{ fontSize: '1.1rem', lineHeight: 1 }}>×</span>
-        ) : (
-          <span style={{ fontFamily: 'var(--font-dancing)', fontSize: '1rem', fontWeight: 700 }}>MC</span>
-        )}
-      </button>
+        {/* Initials */}
+        <span style={{
+          fontFamily: 'var(--font-cormorant)',
+          fontStyle: 'italic',
+          fontWeight: 600,
+          fontSize: '14px',
+          color: 'var(--terra)',
+          lineHeight: 1,
+          letterSpacing: '0.02em',
+        }}>MC</span>
 
-      {/* Overlay — light cream background */}
+        {/* Separator */}
+        <span style={{ display: 'block', width: '1px', height: '13px', background: 'rgba(28,20,16,0.18)' }} />
+
+        {/* Label */}
+        <span style={{
+          fontFamily: 'var(--font-jost)',
+          fontWeight: 500,
+          fontSize: '9px',
+          letterSpacing: '0.22em',
+          textTransform: 'uppercase',
+          color: 'var(--espresso)',
+        }}>Menu</span>
+
+        {/* Hamburger lines */}
+        <span style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          <span style={{ display: 'block', height: '1.5px', width: '15px', background: 'var(--espresso)' }} />
+          <span style={{ display: 'block', height: '1.5px', width: '9px', background: 'var(--espresso)' }} />
+        </span>
+      </motion.button>
+
+      {/* ── OVERLAY — slides in from top ── */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            key="overlay"
+            initial={{ clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ clipPath: 'inset(0 0 0% 0)' }}
+            exit={{ clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.44, ease }}
             style={{
               position: 'fixed',
               inset: 0,
-              zIndex: 999,
-              backgroundColor: 'var(--cream)',
+              zIndex: 190,
+              backgroundColor: 'var(--espresso)',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.25rem',
+              overflowY: 'auto',
+              WebkitOverflowScrolling: 'touch',
             }}
+            onClick={() => setOpen(false)}
           >
-            {/* Subtle tile pattern overlay */}
-            <div
-              className="tile-pattern"
-              style={{ position: 'absolute', inset: 0, opacity: 0.5, pointerEvents: 'none' }}
-            />
-
-            {/* Logo mark */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            {/* Close button — top right */}
+            <button
+              onClick={() => setOpen(false)}
+              aria-label="Close navigation"
               style={{
-                marginBottom: '2.5rem',
-                textAlign: 'center',
+                position: 'absolute',
+                top: '1.1rem',
+                right: '1.5rem',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                touchAction: 'manipulation',
+                WebkitTapHighlightColor: 'transparent',
+                zIndex: 10,
               }}
             >
               <span style={{
-                fontFamily: 'var(--font-dancing)',
-                fontSize: '1.5rem',
-                color: 'var(--terra)',
-                display: 'block',
-                lineHeight: 1.2,
-              }}>Mi</span>
-              <span style={{
-                fontFamily: 'var(--font-playfair)',
-                fontSize: '1.5rem',
-                fontWeight: 700,
-                color: 'var(--espresso)',
-                display: 'block',
-                lineHeight: 1.2,
-              }}>Casa</span>
-            </motion.div>
+                fontFamily: 'var(--font-jost)',
+                fontWeight: 500,
+                fontSize: '0.55rem',
+                letterSpacing: '0.26em',
+                textTransform: 'uppercase',
+                color: 'rgba(250,247,242,0.55)',
+              }}>Close</span>
+              <span style={{ display: 'block', width: '1.1rem', height: '1px', backgroundColor: 'rgba(250,247,242,0.55)' }} />
+            </button>
 
             {/* Nav links */}
-            <nav>
+            <nav
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                flex: 1,
+                padding: 'clamp(5rem, 12vw, 8rem) clamp(1.5rem, 6vw, 3.5rem) clamp(3rem, 8vw, 5rem)',
+              }}
+              onClick={(e: React.MouseEvent) => e.stopPropagation()}
+            >
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.15 + i * 0.07,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  }}
-                  style={{ textAlign: 'center', marginBottom: '0.5rem' }}
+                  initial={{ opacity: 0, x: -28 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.06 * i + 0.1, duration: 0.38, ease }}
+                  style={{ borderBottom: '1px solid rgba(250,247,242,0.07)' }}
                 >
                   <Link
                     href={link.href}
-                    onClick={() => setOpen(false)}
                     style={{
-                      fontFamily: 'var(--font-playfair)',
-                      fontSize: 'clamp(2.2rem, 6vw, 4rem)',
-                      fontWeight: 600,
-                      color: 'var(--espresso)',
-                      textDecoration: 'none',
-                      lineHeight: 1.15,
+                      fontFamily: 'var(--font-cormorant)',
+                      fontStyle: 'italic',
+                      fontWeight: 300,
                       display: 'block',
-                      transition: 'color 0.2s ease',
+                      fontSize: 'clamp(2.5rem, 9vw, 6rem)',
+                      lineHeight: 1.18,
+                      padding: 'clamp(0.5rem, 1.8vw, 0.9rem) 0',
+                      color: pathname === link.href ? 'var(--terra)' : '#FAF7F2',
+                      transition: 'color 0.15s',
+                      WebkitTapHighlightColor: 'transparent',
                     }}
-                    onMouseEnter={e => ((e.target as HTMLElement).style.color = 'var(--terra)')}
-                    onMouseLeave={e => ((e.target as HTMLElement).style.color = 'var(--espresso)')}
+                    onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = 'var(--terra)')}
+                    onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = pathname === link.href ? 'var(--terra)' : '#FAF7F2')}
                   >
                     {link.label}
                   </Link>
@@ -141,39 +201,49 @@ export default function MiCasaMenu() {
               ))}
             </nav>
 
-            {/* Instagram handles */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+            {/* Bottom info */}
+            <div
               style={{
-                marginTop: '2.5rem',
+                padding: 'clamp(1.5rem, 4vw, 2.5rem) clamp(1.5rem, 6vw, 3.5rem)',
+                borderTop: '1px solid rgba(250,247,242,0.07)',
                 display: 'flex',
-                gap: '1.5rem',
-                fontFamily: 'var(--font-dmsans)',
-                fontSize: '0.8rem',
-                color: 'var(--terra)',
-                letterSpacing: '0.05em',
+                justifyContent: 'space-between',
+                alignItems: 'flex-end',
+                flexWrap: 'wrap',
+                gap: '1rem',
               }}
+              onClick={(e: React.MouseEvent) => e.stopPropagation()}
             >
-              <a
-                href="https://instagram.com/micasacafe_"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: 'var(--terra)', textDecoration: 'none' }}
-              >
-                @micasacafe_
-              </a>
-              <span style={{ color: 'var(--sand)' }}>·</span>
-              <a
-                href="https://instagram.com/micasacafesb"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: 'var(--terra)', textDecoration: 'none' }}
-              >
-                @micasacafesb
-              </a>
-            </motion.div>
+              <div style={{
+                fontFamily: 'var(--font-jost)',
+                fontWeight: 300,
+                fontSize: '0.78rem',
+                color: 'rgba(250,247,242,0.4)',
+                lineHeight: 1.8,
+              }}>
+                <p>Southbank · Southpoint</p>
+                <p>Underwood · Logan Road</p>
+              </div>
+              <div style={{ display: 'flex', gap: '1.25rem' }}>
+                {['@micasacafe_', '@micasacafesb'].map(handle => (
+                  <a
+                    key={handle}
+                    href={`https://instagram.com/${handle.slice(1)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      fontFamily: 'var(--font-jost)',
+                      fontWeight: 300,
+                      fontSize: '0.72rem',
+                      color: 'var(--terra)',
+                      letterSpacing: '0.05em',
+                    }}
+                  >
+                    {handle}
+                  </a>
+                ))}
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
