@@ -272,23 +272,37 @@ export default function MenuPage() {
           ))}
         </motion.div>
 
-        {/* Photo */}
-        <div style={{ position: 'relative', minHeight: 'clamp(300px, 44vw, 580px)', overflow: 'hidden', order: 1 }}>
-          <Image
-            src="/images/IMG_5796.jpeg"
-            alt="Herb-crusted schnitzel with sauce being poured"
-            fill unoptimized
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
-          />
-          <div style={{
-            position: 'absolute', bottom: '1.75rem', left: '1.75rem',
-            background: 'rgba(42,31,20,0.5)', backdropFilter: 'blur(10px)',
-            padding: '0.55rem 1rem', borderRadius: '2px',
-          }}>
-            <p style={{
-              fontFamily: 'var(--font-playfair)', fontStyle: 'italic', fontWeight: 400,
-              fontSize: '0.88rem', color: '#FAF6EF',
-            }}>Herb-Crusted Schnitzel</p>
+        {/* Photos — stacked schnitzel + fish tacos */}
+        <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', order: 1, minHeight: 'clamp(300px, 44vw, 580px)' }}>
+          <div style={{ position: 'relative', overflow: 'hidden' }}>
+            <Image
+              src="/images/IMG_5796.jpeg"
+              alt="Herb-crusted schnitzel with sauce being poured"
+              fill unoptimized
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+            />
+            <div style={{
+              position: 'absolute', bottom: '1rem', left: '1.25rem',
+              background: 'rgba(42,31,20,0.5)', backdropFilter: 'blur(10px)',
+              padding: '0.4rem 0.8rem', borderRadius: '2px',
+            }}>
+              <p style={{ fontFamily: 'var(--font-playfair)', fontStyle: 'italic', fontWeight: 400, fontSize: '0.8rem', color: '#FAF6EF' }}>Herb-Crusted Schnitzel</p>
+            </div>
+          </div>
+          <div style={{ position: 'relative', overflow: 'hidden' }}>
+            <Image
+              src="/images/IMG_5797.jpeg"
+              alt="Fish tacos with pico de gallo, pickled onions and jalapeños"
+              fill unoptimized
+              style={{ objectFit: 'cover', objectPosition: 'center top' }}
+            />
+            <div style={{
+              position: 'absolute', bottom: '1rem', left: '1.25rem',
+              background: 'rgba(42,31,20,0.5)', backdropFilter: 'blur(10px)',
+              padding: '0.4rem 0.8rem', borderRadius: '2px',
+            }}>
+              <p style={{ fontFamily: 'var(--font-playfair)', fontStyle: 'italic', fontWeight: 400, fontSize: '0.8rem', color: '#FAF6EF' }}>Fish Tacos</p>
+            </div>
           </div>
         </div>
       </section>
@@ -483,3 +497,5 @@ export default function MenuPage() {
     </>
   )
 }
+
+
