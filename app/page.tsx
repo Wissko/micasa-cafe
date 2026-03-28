@@ -44,6 +44,11 @@ export default function HomePage() {
               textTransform: 'uppercase',
               color: 'var(--terra)',
               marginBottom: '0.75rem',
+              display: 'inline-block',
+              backgroundColor: 'rgba(42,31,20,0.55)',
+              backdropFilter: 'blur(8px)',
+              padding: '0.3rem 0.75rem',
+              borderRadius: '2px',
             }}
           >
             All-day brunch · Brisbane
@@ -224,7 +229,7 @@ export default function HomePage() {
             color: '#FAF6EF',
             letterSpacing: '-0.02em',
           }}>
-            Made to satisfy —<br />
+            Made to satisfy.<br />
             all day, every day.
           </h2>
         </motion.div>
@@ -244,7 +249,7 @@ export default function HomePage() {
             maxWidth: '38ch',
             marginBottom: '2.25rem',
           }}>
-            Mi Casa is a place where generosity meets craft. Whether you're here for a slow weekend brunch, a shared feast with your squad, or just great coffee on a Tuesday — you're family.
+            Mi Casa is a place where generosity meets craft. Whether you're here for a slow weekend brunch, a shared feast with your squad, or just great coffee on a Tuesday. You're family.
           </p>
           <Link
             href="/story"

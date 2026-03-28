@@ -18,9 +18,9 @@ const breakfast: MenuItem[] = [
   { name: 'Lotus Biscoff Pancakes', desc: 'Biscoff sauce, banana, crushed speculoos, edible flower', note: 'Signature' },
   { name: 'Classic Waffles', desc: 'Golden Belgian waffles, choice of toppings' },
   { name: 'Berry Waffle', desc: 'Mixed berries, chantilly, coulis, edible flower', note: 'Signature' },
-  { name: 'Açaï Bowl — Super Green', desc: 'Spinach, banana, mango, granola, coconut flakes' },
-  { name: 'Açaï Bowl — Pitaya Passion', desc: 'Dragon fruit, passionfruit, chia, honey' },
-  { name: 'Açaï Bowl — Tropical Colada', desc: 'Coconut, pineapple, mango, toasted granola' },
+  { name: 'Açaï Bowl: Super Green', desc: 'Spinach, banana, mango, granola, coconut flakes' },
+  { name: 'Açaï Bowl: Pitaya Passion', desc: 'Dragon fruit, passionfruit, chia, honey' },
+  { name: 'Açaï Bowl: Tropical Colada', desc: 'Coconut, pineapple, mango, toasted granola' },
 ]
 
 const brunch: MenuItem[] = [
@@ -32,18 +32,18 @@ const brunch: MenuItem[] = [
 ]
 
 const desserts: MenuItem[] = [
-  { name: 'Dessert Pizza — Nutella Madness', desc: 'Crispy base, Nutella, banana, strawberry, crushed Oreo' },
-  { name: 'Dessert Pizza — White Heaven', desc: 'White choc spread, mixed berries, toasted almond' },
+  { name: 'Dessert Pizza: Nutella Madness', desc: 'Crispy base, Nutella, banana, strawberry, crushed Oreo' },
+  { name: 'Dessert Pizza: White Heaven', desc: 'White choc spread, mixed berries, toasted almond' },
   { name: 'PB Banana Waffle Bowl', desc: 'Peanut butter ice cream, banana, Reese\'s, chocolate drizzle', note: 'Best-seller' },
-  { name: 'Sundae — Strawberry Dream', desc: 'Vanilla ice cream, fresh strawberries, whipped cream' },
+  { name: 'Sundae: Strawberry Dream', desc: 'Vanilla ice cream, fresh strawberries, whipped cream' },
 ]
 
 const drinks: MenuItem[] = [
-  { name: 'Fit Shake — Berry Breaky', desc: 'Mixed berries, banana, almond milk, protein boost' },
-  { name: 'Fit Shake — Mango Muscle', desc: 'Mango, pineapple, coconut water, vanilla protein' },
-  { name: 'Fresh Juice — Green Dream', desc: 'Cucumber, apple, celery, spinach, lemon' },
-  { name: 'Fresh Juice — Detoxer', desc: 'Beetroot, carrot, ginger, orange' },
-  { name: 'Fresh Juice — Feel Good', desc: 'Watermelon, strawberry, lemon' },
+  { name: 'Fit Shake: Berry Breaky', desc: 'Mixed berries, banana, almond milk, protein boost' },
+  { name: 'Fit Shake: Mango Muscle', desc: 'Mango, pineapple, coconut water, vanilla protein' },
+  { name: 'Fresh Juice: Green Dream', desc: 'Cucumber, apple, celery, spinach, lemon' },
+  { name: 'Fresh Juice: Detoxer', desc: 'Beetroot, carrot, ginger, orange' },
+  { name: 'Fresh Juice: Feel Good', desc: 'Watermelon, strawberry, lemon' },
   { name: 'Classic Milkshake', desc: 'Your choice of flavour, thick and creamy' },
   { name: 'Frappe', desc: 'Iced coffee or flavoured frappe' },
 ]
