@@ -14,15 +14,30 @@ const fadeUp = (delay = 0) => ({
 export default function LocationsPage() {
   return (
     <>
-      {/* Header */}
+      {/* Header — full brunch spread photo structures the locations hero */}
       <section style={{
-        background: 'linear-gradient(135deg, #C8603A 0%, #D4734E 100%)',
         padding: 'clamp(6rem, 12vw, 10rem) 2rem clamp(3rem, 6vw, 5rem)',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        minHeight: '42vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
-        <div className="tile-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.25 }} />
+        <Image
+          src="/images/IMG_5795.jpeg"
+          alt="Mi Casa Café full brunch spread — shakshuka, avocado toast, pancakes, smoothie"
+          fill
+          unoptimized
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center 40%' }}
+        />
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(160deg, rgba(42,31,20,0.72) 0%, rgba(200,96,58,0.48) 50%, rgba(42,31,20,0.72) 100%)',
+        }} />
+        <div className="tile-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.18 }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <motion.span
             {...fadeUp(0)}
