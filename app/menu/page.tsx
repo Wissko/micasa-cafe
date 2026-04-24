@@ -110,7 +110,7 @@ export default function MenuPage() {
       ══════════════════════════════════════════ */}
       <section style={{ position: 'relative', height: 'clamp(460px, 68svh, 760px)', overflow: 'hidden' }}>
         <Image
-          src="/images/IMG_5795.jpeg"
+          src="/images/IMG_5786.jpeg"
           alt="Mi Casa Café brunch flat lay"
           fill priority unoptimized
           style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
@@ -162,7 +162,7 @@ export default function MenuPage() {
         {/* Photo */}
         <div style={{ position: 'relative', minHeight: 'clamp(300px, 44vw, 580px)', overflow: 'hidden' }}>
           <Image
-            src="/images/IMG_5787.jpeg"
+            src="/images/IMG_5788.jpeg"
             alt="Berry waffle with fresh fruit and cream"
             fill unoptimized
             style={{ objectFit: 'cover', objectPosition: 'center' }}
@@ -276,7 +276,7 @@ export default function MenuPage() {
         <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', order: 1, minHeight: 'clamp(300px, 44vw, 580px)' }}>
           <div style={{ position: 'relative', overflow: 'hidden' }}>
             <Image
-              src="/images/IMG_5796.jpeg"
+              src="/images/IMG_5789.jpeg"
               alt="Herb-crusted schnitzel with sauce being poured"
               fill unoptimized
               style={{ objectFit: 'cover', objectPosition: 'center' }}
@@ -291,7 +291,7 @@ export default function MenuPage() {
           </div>
           <div style={{ position: 'relative', overflow: 'hidden' }}>
             <Image
-              src="/images/IMG_5797.jpeg"
+              src="/images/IMG_5792.jpeg"
               alt="Fish tacos with pico de gallo, pickled onions and jalapeños"
               fill unoptimized
               style={{ objectFit: 'cover', objectPosition: 'center top' }}
@@ -312,7 +312,7 @@ export default function MenuPage() {
       ══════════════════════════════════════════ */}
       <section style={{ position: 'relative', height: 'clamp(260px, 38vw, 500px)', overflow: 'hidden' }}>
         <Image
-          src="/images/IMG_5786.jpeg"
+          src="/images/IMG_5793.jpeg"
           alt="Generous sharing feast platter"
           fill unoptimized
           style={{ objectFit: 'cover', objectPosition: 'center 35%' }}
@@ -386,7 +386,7 @@ export default function MenuPage() {
             overflow: 'hidden', marginTop: '2.5rem', borderRadius: '2px',
           }}>
             <Image
-              src="/images/IMG_5794.jpeg"
+              src="/images/IMG_5790.jpeg"
               alt="PB banana waffle bowl"
               fill unoptimized
               style={{ objectFit: 'cover' }}
@@ -497,5 +497,3 @@ export default function MenuPage() {
     </>
   )
 }
-
-

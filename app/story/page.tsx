@@ -14,7 +14,7 @@ export default function StoryPage() {
       ══════════════════════════════════════════ */}
       <section style={{ position: 'relative', height: 'clamp(480px, 72svh, 820px)', overflow: 'hidden' }}>
         <Image
-          src="/images/IMG_5788.jpeg"
+          src="/images/IMG_5796.jpeg"
           alt="Mi Casa Café rose chocolate cake with café signage"
           fill priority unoptimized
           style={{ objectFit: 'cover', objectPosition: 'center 40%' }}
@@ -128,7 +128,7 @@ export default function StoryPage() {
         {/* Photo */}
         <div style={{ position: 'relative', minHeight: 'clamp(320px, 48vw, 600px)', overflow: 'hidden' }}>
           <Image
-            src="/images/IMG_5798.jpeg"
+            src="/images/IMG_5789.jpeg"
             alt="Mi Casa Café Biscoff pancake stack"
             fill unoptimized
             style={{ objectFit: 'cover', objectPosition: 'center top' }}
@@ -195,7 +195,7 @@ export default function StoryPage() {
       ══════════════════════════════════════════ */}
       <section style={{ position: 'relative', height: 'clamp(320px, 48vw, 580px)', overflow: 'hidden' }}>
         <Image
-          src="/images/IMG_5786.jpeg"
+          src="/images/IMG_5797.jpeg"
           alt="Mi Casa Café sharing feast platter"
           fill unoptimized
           style={{ objectFit: 'cover', objectPosition: 'center 35%' }}
@@ -277,7 +277,7 @@ export default function StoryPage() {
         {/* Photo */}
         <div style={{ position: 'relative', minHeight: 'clamp(280px, 42vw, 540px)', overflow: 'hidden' }}>
           <Image
-            src="/images/IMG_5799.jpeg"
+            src="/images/IMG_5794.jpeg"
             alt="100% Halal certified cafés Queensland"
             fill unoptimized
             style={{ objectFit: 'cover', objectPosition: 'center' }}

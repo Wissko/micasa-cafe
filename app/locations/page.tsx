@@ -26,7 +26,7 @@ export default function LocationsPage() {
         justifyContent: 'center',
       }}>
         <Image
-          src="/images/IMG_5795.jpeg"
+          src="/images/IMG_5786.jpeg"
           alt="Mi Casa Café full brunch spread — shakshuka, avocado toast, pancakes, smoothie"
           fill
           unoptimized
@@ -91,7 +91,7 @@ export default function LocationsPage() {
               overflow: 'hidden',
             }}>
               <Image
-                src="/images/IMG_5790.jpeg"
+                src="/images/IMG_5793.jpeg"
                 alt="Mi Casa Southbank — strawberry waffle with café signage"
                 fill
                 unoptimized
@@ -176,7 +176,7 @@ export default function LocationsPage() {
               overflow: 'hidden',
             }}>
               <Image
-                src="/images/IMG_5792.jpeg"
+                src="/images/IMG_5798.jpeg"
                 alt="Mi Casa Underwood — Kinder Bueno pancake tower with café signage"
                 fill
                 unoptimized
@@ -252,7 +252,7 @@ export default function LocationsPage() {
       ══════════════════════════════════════════ */}
       <section style={{ position: 'relative', height: 'clamp(280px, 40vw, 520px)', overflow: 'hidden' }}>
         <Image
-          src="/images/IMG_5799.jpeg"
+          src="/images/IMG_5794.jpeg"
           alt="Mi Casa Café Queensland — 100% Halal certified pastries selection"
           fill unoptimized
           style={{ objectFit: 'cover', objectPosition: 'center' }}
@@ -297,5 +297,3 @@ export default function LocationsPage() {
     </>
   )
 }
-
-

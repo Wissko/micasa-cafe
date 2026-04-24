@@ -25,7 +25,7 @@ export default function ContactPage() {
         justifyContent: 'center',
       }}>
         <Image
-          src="/images/IMG_5789.jpeg"
+          src="/images/IMG_5799.jpeg"
           alt="Mi Casa Café biscoff pancake stack"
           fill
           unoptimized

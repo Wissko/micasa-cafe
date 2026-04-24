@@ -14,7 +14,7 @@ export default function HomePage() {
       ══════════════════════════════════════════ */}
       <section style={{ position: 'relative', minHeight: '100svh', overflow: 'hidden' }}>
         <Image
-          src="/images/IMG_5786.jpeg"
+          src="/images/IMG_5795.jpeg"
           alt="Mi Casa Café — generous sharing feast"
           fill priority unoptimized
           style={{ objectFit: 'cover', objectPosition: 'center 40%' }}
@@ -178,9 +178,9 @@ export default function HomePage() {
       ══════════════════════════════════════════ */}
       <section style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr 1fr' }}>
         {[
-          { src: '/images/IMG_5789.jpeg', alt: 'Lotus Biscoff pancakes stack', pos: 'center top' },
-          { src: '/images/IMG_5795.jpeg', alt: 'Brunch flat lay — shakshuka, pancakes, smoothie', pos: 'center' },
-          { src: '/images/IMG_5788.jpeg', alt: 'Rose chocolate cake with café signage', pos: 'center' },
+          { src: '/images/IMG_5787.jpeg', alt: 'Lotus Biscoff pancakes stack', pos: 'center top' },
+          { src: '/images/IMG_5798.jpeg', alt: 'Brunch flat lay — shakshuka, pancakes, smoothie', pos: 'center' },
+          { src: '/images/IMG_5799.jpeg', alt: 'Rose chocolate cake with café signage', pos: 'center' },
         ].map((img, i) => (
           <motion.div
             key={img.src}
@@ -274,7 +274,7 @@ export default function HomePage() {
       ══════════════════════════════════════════ */}
       <section style={{ position: 'relative', height: 'clamp(360px, 56vw, 680px)', overflow: 'hidden' }}>
         <Image
-          src="/images/IMG_5787.jpeg"
+          src="/images/IMG_5790.jpeg"
           alt="Berry waffle with fresh fruit and cream"
           fill unoptimized
           style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
@@ -349,7 +349,7 @@ export default function HomePage() {
       }}>
         <div style={{ position: 'relative', minHeight: 'clamp(320px, 45vw, 560px)', overflow: 'hidden' }}>
           <Image
-            src="/images/IMG_5793.jpeg"
+            src="/images/IMG_5794.jpeg"
             alt="Pistachio French toast"
             fill unoptimized
             style={{ objectFit: 'cover', objectPosition: 'center top' }}
