@@ -12,7 +12,7 @@ const chapters = [
   {
     eyebrow: 'Breakfast hero',
     title: 'Signature stacks',
-    text: 'IMG_5789 and IMG_5793 carry the sweet side of the menu with close framing and visible texture.',
+    text: 'Tall pancakes, cream, fruit and warm colour build the first appetite hit before the menu even starts.',
     image: '/images/IMG_5793.jpeg',
     alt: 'Mi Casa Café pancake tower with fruit and cream',
     position: 'center',
@@ -20,7 +20,7 @@ const chapters = [
   {
     eyebrow: 'Room energy',
     title: 'The table feels lived in',
-    text: 'IMG_5795 works best when it sets the rhythm of the page instead of sitting in a small decorative slot.',
+    text: 'A full spread of plates brings movement and generosity, making the brand feel social instead of staged.',
     image: '/images/IMG_5795.jpeg',
     alt: 'Mi Casa Café brunch editorial flat lay',
     position: 'center',
@@ -28,7 +28,7 @@ const chapters = [
   {
     eyebrow: 'Dessert finish',
     title: 'Rich, playful close-ups',
-    text: 'IMG_5794 gives the home page a proper finish and bridges cleanly into the dessert story on the menu page.',
+    text: 'The dessert frame closes the story with indulgence and naturally pulls visitors deeper into the menu.',
     image: '/images/IMG_5794.jpeg',
     alt: 'Mi Casa Café waffle bowl dessert',
     position: 'center',
@@ -277,7 +277,7 @@ export default function HomePage() {
                 maxWidth: '36ch',
               }}
             >
-              Instead of leaning on placeholder gradients, the home page now moves from a full-table hero to close product shots and room energy. The layout reads like a visit: arrival, appetite, then atmosphere.
+              From the first shared table to the final dessert close-up, the home page now reads like a real visit: arrival, appetite, then atmosphere.
             </p>
 
             <div className="home-chapter-list">

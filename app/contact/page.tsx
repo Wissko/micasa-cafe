@@ -3,142 +3,192 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.55, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
-})
+const ease = [0.22, 1, 0.36, 1] as const
+
+const handles = [
+  { name: 'Southbank', handle: '@micasacafesb', href: 'https://instagram.com/micasacafesb' },
+  { name: 'Underwood', handle: '@micasacafe_', href: 'https://instagram.com/micasacafe_' },
+]
 
 export default function ContactPage() {
   return (
     <>
       <section style={{ background: 'var(--paper)', padding: 'clamp(1rem, 3vw, 1.5rem)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '1rem' }}>
+        <div className="contact-hero-grid">
           <motion.div
-            {...fadeUp(0)}
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.58, ease }}
             style={{
               background: 'var(--cream)',
-              borderRadius: '28px',
+              borderRadius: '30px',
               padding: 'clamp(2rem, 6vw, 4rem)',
-              minHeight: 'clamp(340px, 58svh, 720px)',
+              minHeight: 'clamp(360px, 68svh, 780px)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}
           >
             <div>
-              <p style={{ fontFamily: 'var(--font-dmsans)', fontWeight: 800, fontSize: '0.6rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--terra)', marginBottom: '0.9rem' }}>
-                Come home
+              <p style={{ fontFamily: 'var(--font-dmsans)', fontWeight: 800, fontSize: '0.62rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--terra)', marginBottom: '1rem' }}>
+                Bookings · events · general enquiries
               </p>
-              <span style={{ fontFamily: 'var(--font-dancing)', fontSize: 'clamp(1.7rem, 4vw, 3rem)', color: 'var(--terra)', display: 'block', lineHeight: 1 }}>say</span>
-              <h1 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(3rem, 10vw, 6.5rem)', fontWeight: 800, color: 'var(--espresso)', lineHeight: 0.9, letterSpacing: '-0.04em', marginBottom: '1rem' }}>
-                Hello
+              <h1 style={{ fontFamily: 'var(--font-playfair)', fontWeight: 800, fontSize: 'clamp(3.2rem, 10vw, 7rem)', lineHeight: 0.88, letterSpacing: '-0.05em', color: 'var(--espresso)', marginBottom: '1rem', textTransform: 'uppercase', maxWidth: '7ch' }}>
+                Say hello like a guest, not a form.
               </h1>
-              <p style={{ fontFamily: 'var(--font-dmsans)', fontWeight: 400, fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)', lineHeight: 1.85, color: 'rgba(42,31,20,0.68)', maxWidth: '34ch' }}>
-                Contact now feels less like a plain form page and more like a visit: the writing sits in its own quiet panel while real location imagery and brand cues hold the right side.
+              <p style={{ fontFamily: 'var(--font-dmsans)', fontWeight: 500, fontSize: 'clamp(0.96rem, 1.8vw, 1.08rem)', lineHeight: 1.85, color: 'rgba(42,31,20,0.68)', maxWidth: '35ch' }}>
+                Contact now opens as a real arrival sequence: location-led imagery, a calm writing panel, and practical details kept in the same visual language as the rest of the site.
               </p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '2rem' }}>
-              <div style={{ position: 'relative', minHeight: '180px', overflow: 'hidden', borderRadius: '22px' }}>
-                <Image src="/images/IMG_5790.jpeg" alt="Mi Casa Southbank dessert plate and café signage" fill priority unoptimized style={{ objectFit: 'cover', objectPosition: 'center' }} />
-              </div>
-              <div style={{ position: 'relative', minHeight: '180px', overflow: 'hidden', borderRadius: '22px' }}>
-                <Image src="/images/IMG_5792.jpeg" alt="Mi Casa Underwood pancake stack and café signage" fill unoptimized style={{ objectFit: 'cover', objectPosition: 'center' }} />
-              </div>
+            <div className="contact-handle-row">
+              {handles.map((item) => (
+                <a key={item.handle} href={item.href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '1rem 1.1rem', borderRadius: '18px', background: 'rgba(196,99,51,0.08)', textDecoration: 'none' }}>
+                  <span style={{ display: 'block', marginBottom: '0.24rem', fontFamily: 'var(--font-dmsans)', fontWeight: 800, fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(42,31,20,0.42)' }}>{item.name}</span>
+                  <span style={{ fontFamily: 'var(--font-dmsans)', fontWeight: 700, fontSize: '0.92rem', color: 'var(--espresso)' }}>{item.handle}</span>
+                </a>
+              ))}
             </div>
           </motion.div>
 
-          <div style={{ display: 'grid', gridTemplateRows: '1fr auto', gap: '1rem', minHeight: 'clamp(340px, 58svh, 720px)' }}>
-            <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '28px' }}>
-              <Image src="/images/IMG_5789.jpeg" alt="Mi Casa Café biscoff pancake stack" fill unoptimized style={{ objectFit: 'cover', objectPosition: 'center top' }} />
+          <div className="contact-hero-media">
+            <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '30px', minHeight: 'clamp(320px, 48svh, 520px)' }}>
+              <Image src="/images/IMG_5789.jpeg" alt="Mi Casa Café Biscoff pancake stack" fill priority unoptimized style={{ objectFit: 'cover', objectPosition: 'center top' }} />
             </div>
-            <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '22px', minHeight: '180px' }}>
-              <Image src="/images/IMG_5799.jpeg" alt="Mi Casa Café halal pastries and certification signage" fill unoptimized style={{ objectFit: 'cover', objectPosition: 'center' }} />
+            <div className="contact-hero-row">
+              <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '24px', minHeight: '220px' }}>
+                <Image src="/images/IMG_5790.jpeg" alt="Mi Casa Southbank dessert plate with café signage" fill unoptimized style={{ objectFit: 'cover', objectPosition: 'center' }} />
+              </div>
+              <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '24px', minHeight: '220px' }}>
+                <Image src="/images/IMG_5792.jpeg" alt="Mi Casa Underwood pancake stack with café signage" fill unoptimized style={{ objectFit: 'cover', objectPosition: 'center' }} />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section style={{ backgroundColor: 'var(--cream)', padding: 'clamp(3rem, 6vw, 5rem) 2rem' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', alignItems: 'start' }}>
-          <motion.div {...fadeUp(0.1)} style={{ background: 'var(--paper)', borderRadius: '24px', padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
-            <h2 style={{ fontFamily: 'var(--font-playfair)', fontSize: '1.9rem', fontWeight: 700, color: 'var(--espresso)', marginBottom: '0.5rem' }}>Drop us a line</h2>
-            <p style={{ fontFamily: 'var(--font-dmsans)', fontSize: '0.9rem', color: 'rgba(42,31,20,0.68)', marginBottom: '2rem' }}>
-              For bookings, events, or just to say hola — we would love to hear from you.
+      <section style={{ background: 'var(--paper)', padding: '0 1rem 1rem' }}>
+        <div className="contact-main-grid">
+          <motion.div
+            initial={{ opacity: 0, x: -18 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, ease }}
+            style={{
+              background: 'var(--cream)',
+              borderRadius: '30px',
+              padding: 'clamp(2rem, 5vw, 3rem)',
+            }}
+          >
+            <p style={{ fontFamily: 'var(--font-dmsans)', fontWeight: 800, fontSize: '0.58rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--terra)', marginBottom: '0.9rem' }}>Write to us</p>
+            <h2 style={{ fontFamily: 'var(--font-playfair)', fontWeight: 800, fontSize: 'clamp(2rem, 4.3vw, 3.2rem)', lineHeight: 0.96, letterSpacing: '-0.03em', color: 'var(--espresso)', marginBottom: '0.9rem', maxWidth: '10ch' }}>
+              Send the details clearly.
+            </h2>
+            <p style={{ fontFamily: 'var(--font-dmsans)', fontWeight: 500, fontSize: '0.95rem', lineHeight: 1.8, color: 'rgba(42,31,20,0.68)', maxWidth: '34ch', marginBottom: '2rem' }}>
+              For bookings, collaborations, events, or general questions. The form stays simple and spacious so it feels like the site, not a plugin drop-in.
             </p>
 
-            <form style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+            <form style={{ display: 'grid', gap: '1.15rem' }}>
               {[
                 { id: 'name', label: 'Your name', type: 'text', placeholder: 'Ana García' },
                 { id: 'email', label: 'Email address', type: 'email', placeholder: 'ana@example.com' },
               ].map((field) => (
                 <div key={field.id}>
-                  <label htmlFor={field.id} style={{ fontFamily: 'var(--font-dmsans)', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--terra)', display: 'block', marginBottom: '0.4rem' }}>
+                  <label htmlFor={field.id} style={{ display: 'block', marginBottom: '0.45rem', fontFamily: 'var(--font-dmsans)', fontWeight: 800, fontSize: '0.64rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(42,31,20,0.42)' }}>
                     {field.label}
                   </label>
                   <input
                     id={field.id}
                     type={field.type}
                     placeholder={field.placeholder}
-                    style={{ width: '100%', padding: '0.8rem 1rem', backgroundColor: 'var(--sand)', border: '1.5px solid transparent', borderRadius: '10px', fontFamily: 'var(--font-dmsans)', fontSize: '0.95rem', color: 'var(--espresso)', outline: 'none', transition: 'border-color 0.2s ease', boxSizing: 'border-box' }}
-                    onFocus={(e) => (e.target.style.borderColor = 'var(--terra)')}
-                    onBlur={(e) => (e.target.style.borderColor = 'transparent')}
+                    style={{ width: '100%', border: '1px solid rgba(42,31,20,0.1)', borderRadius: '16px', padding: '0.95rem 1rem', background: '#fbf6ef', fontFamily: 'var(--font-dmsans)', fontSize: '0.95rem', color: 'var(--espresso)', boxSizing: 'border-box', outline: 'none' }}
                   />
                 </div>
               ))}
 
               <div>
-                <label htmlFor="message" style={{ fontFamily: 'var(--font-dmsans)', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--terra)', display: 'block', marginBottom: '0.4rem' }}>
+                <label htmlFor="message" style={{ display: 'block', marginBottom: '0.45rem', fontFamily: 'var(--font-dmsans)', fontWeight: 800, fontSize: '0.64rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(42,31,20,0.42)' }}>
                   Message
                 </label>
                 <textarea
                   id="message"
-                  rows={5}
-                  placeholder="We would love to hear from you..."
-                  style={{ width: '100%', padding: '0.8rem 1rem', backgroundColor: 'var(--sand)', border: '1.5px solid transparent', borderRadius: '10px', fontFamily: 'var(--font-dmsans)', fontSize: '0.95rem', color: 'var(--espresso)', outline: 'none', resize: 'vertical', transition: 'border-color 0.2s ease', boxSizing: 'border-box' }}
-                  onFocus={(e) => (e.target.style.borderColor = 'var(--terra)')}
-                  onBlur={(e) => (e.target.style.borderColor = 'transparent')}
+                  rows={6}
+                  placeholder="Tell us what you need..."
+                  style={{ width: '100%', border: '1px solid rgba(42,31,20,0.1)', borderRadius: '16px', padding: '0.95rem 1rem', background: '#fbf6ef', fontFamily: 'var(--font-dmsans)', fontSize: '0.95rem', color: 'var(--espresso)', boxSizing: 'border-box', outline: 'none', resize: 'vertical' }}
                 />
               </div>
 
-              <button type="submit" style={{ backgroundColor: 'var(--terra)', color: 'var(--cream)', fontFamily: 'var(--font-playfair)', fontSize: '1rem', fontWeight: 600, padding: '0.95rem 2rem', border: 'none', borderRadius: '999px', cursor: 'pointer', alignSelf: 'flex-start' }}>
-                Send Message
+              <button type="submit" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '52px', width: 'fit-content', padding: '0.9rem 1.8rem', background: 'var(--espresso)', color: '#FAF6EF', border: 'none', borderRadius: '999px', fontFamily: 'var(--font-dmsans)', fontWeight: 800, fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', cursor: 'pointer' }}>
+                Send message
               </button>
             </form>
           </motion.div>
 
-          <motion.div {...fadeUp(0.2)} style={{ display: 'grid', gap: '1rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-              <div style={{ backgroundColor: 'var(--blush)', borderRadius: '20px', padding: '1.5rem', borderLeft: '4px solid var(--terra)' }}>
-                <h3 style={{ fontFamily: 'var(--font-playfair)', fontWeight: 700, fontSize: '1.2rem', color: 'var(--espresso)', marginBottom: '0.9rem' }}>Southbank</h3>
-                <p style={{ fontFamily: 'var(--font-dmsans)', fontSize: '0.9rem', color: 'var(--espresso)', lineHeight: 1.6 }}>Southpoint, South Brisbane QLD</p>
-                <p style={{ fontFamily: 'var(--font-dmsans)', fontSize: '0.85rem', color: 'var(--terra)', marginTop: '0.4rem' }}>Open all day</p>
-                <a href="https://instagram.com/micasacafesb" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '0.75rem', fontFamily: 'var(--font-dmsans)', fontSize: '0.85rem', color: 'var(--terra)', textDecoration: 'none' }}>@micasacafesb ↗</a>
+          <div className="contact-side-stack">
+            <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, ease }} style={{ position: 'relative', overflow: 'hidden', borderRadius: '30px', minHeight: 'clamp(280px, 38vw, 420px)' }}>
+              <Image src="/images/IMG_5799.jpeg" alt="Mi Casa Café halal pastries and certification signage" fill unoptimized style={{ objectFit: 'cover', objectPosition: 'center' }} />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.08, ease }} style={{ background: 'var(--sand)', borderRadius: '30px', padding: 'clamp(2rem, 5vw, 2.6rem)', minHeight: 'clamp(280px, 38vw, 420px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <p style={{ fontFamily: 'var(--font-dmsans)', fontWeight: 800, fontSize: '0.58rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--terra)', marginBottom: '0.9rem' }}>Visit instead</p>
+                <h2 style={{ fontFamily: 'var(--font-playfair)', fontWeight: 800, fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', lineHeight: 1, letterSpacing: '-0.03em', color: 'var(--espresso)', marginBottom: '1rem', maxWidth: '9ch' }}>
+                  Two locations, same welcome.
+                </h2>
+                <p style={{ fontFamily: 'var(--font-dmsans)', fontWeight: 500, fontSize: '0.95rem', lineHeight: 1.82, color: 'rgba(42,31,20,0.68)', maxWidth: '33ch' }}>
+                  The halal image already carries its own messaging, so this panel handles the practical follow-up: where to go, what to expect, and which account to message first.
+                </p>
               </div>
 
-              <div style={{ backgroundColor: 'var(--sand)', borderRadius: '20px', padding: '1.5rem', borderLeft: '4px solid var(--olive)' }}>
-                <h3 style={{ fontFamily: 'var(--font-playfair)', fontWeight: 700, fontSize: '1.2rem', color: 'var(--espresso)', marginBottom: '0.9rem' }}>Underwood</h3>
-                <p style={{ fontFamily: 'var(--font-dmsans)', fontSize: '0.9rem', color: 'var(--espresso)', lineHeight: 1.6 }}>Logan Road, Underwood QLD</p>
-                <p style={{ fontFamily: 'var(--font-dmsans)', fontSize: '0.85rem', color: 'var(--terra)', marginTop: '0.4rem' }}>Open all day</p>
-                <a href="https://instagram.com/micasacafe_" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '0.75rem', fontFamily: 'var(--font-dmsans)', fontSize: '0.85rem', color: 'var(--terra)', textDecoration: 'none' }}>@micasacafe_ ↗</a>
+              <div style={{ display: 'grid', gap: '0.9rem', marginTop: '1.4rem' }}>
+                <div>
+                  <span style={{ display: 'inline-block', marginBottom: '0.28rem', fontFamily: 'var(--font-dmsans)', fontWeight: 800, fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(42,31,20,0.42)' }}>Southbank</span>
+                  <p style={{ fontFamily: 'var(--font-dmsans)', fontWeight: 500, fontSize: '0.95rem', color: 'var(--espresso)' }}>Southpoint, South Brisbane QLD</p>
+                </div>
+                <div>
+                  <span style={{ display: 'inline-block', marginBottom: '0.28rem', fontFamily: 'var(--font-dmsans)', fontWeight: 800, fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(42,31,20,0.42)' }}>Underwood</span>
+                  <p style={{ fontFamily: 'var(--font-dmsans)', fontWeight: 500, fontSize: '0.95rem', color: 'var(--espresso)' }}>Logan Road, Underwood QLD</p>
+                </div>
               </div>
-            </div>
-
-            <div style={{ backgroundColor: 'var(--paper)', borderRadius: '24px', padding: '1.5rem' }}>
-              <p style={{ fontFamily: 'var(--font-dmsans)', fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--terra)', marginBottom: '0.7rem' }}>Follow the casa</p>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                {['@micasacafe_', '@micasacafesb'].map((handle) => (
-                  <a key={handle} href={`https://instagram.com/${handle.replace('@', '')}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-dmsans)', fontSize: '0.85rem', color: 'var(--espresso)', textDecoration: 'none', backgroundColor: 'var(--sand)', padding: '0.55rem 1rem', borderRadius: '999px' }}>
-                    {handle}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
+
+      <style jsx>{`
+        .contact-hero-grid,
+        .contact-main-grid,
+        .contact-hero-media,
+        .contact-side-stack {
+          display: grid;
+          gap: 1rem;
+        }
+
+        .contact-handle-row,
+        .contact-hero-row {
+          display: grid;
+          gap: 0.85rem;
+        }
+
+        @media (min-width: 768px) {
+          .contact-hero-grid,
+          .contact-main-grid {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          }
+
+          .contact-handle-row,
+          .contact-hero-row {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+
+        @media (max-width: 767px) {
+          .contact-handle-row,
+          .contact-hero-row {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
     </>
   )
 }
